@@ -3,13 +3,43 @@ import Image from "next/image";
 import heroImg from "../public/heroImg.png";
 import Header from "../public/components/header";
 import Link from "next/link";
-import { Button } from "@material-tailwind/react";
+import { Button, ButtonGroup } from "@material-tailwind/react";
 import styles from "../public/static/theme";
 
 function App() {
   return (
     <>
-      <Header />
+      <Header
+        children={
+          <>
+            <div className="w-1/2"></div>
+            <ButtonGroup variant="filled" size="md">
+              <Link href="/auth/signup" id="">
+                <Button
+                  className="shadow-none "
+                  style={{
+                    color: styles.light.cta,
+                    backgroundColor: styles.light.primaryLight,
+                  }}
+                >
+                  SIGN UP
+                </Button>
+              </Link>
+              <Link href="/auth/login">
+                <Button
+                  className="hover:bg-blue-gray-50"
+                  style={{
+                    backgroundColor: styles.light.cta,
+                    color: styles.light.primaryLight,
+                  }}
+                >
+                  LOG IN
+                </Button>
+              </Link>
+            </ButtonGroup>
+          </>
+        }
+      />
       <main className=" bg-[url('../public/static/ssshape.svg')]  bg-no-repeat bg-left-bottom bg-contain bg-blend-lighten">
         <section
           id="hero"

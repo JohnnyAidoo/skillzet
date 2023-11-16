@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-span {
+/* span {
   color: #0011fa;
-}
+} */
 
 main section {
   min-height: 50vh;

@@ -2,7 +2,7 @@ const styles = {
   light: {
     primaryLight: "#FFFFFF",
     primaryDark: "#EDEDF4",
-    textColor: "#FFFFFF",
+    textColor: "#000000",
     ctaTint: "#0035BD",
     cta: "#3B45C3",
     ctaDeep: "#000073",
