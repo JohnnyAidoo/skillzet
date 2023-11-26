@@ -16,19 +16,30 @@ import {
   List,
   ListItem,
   Badge,
+  Alert as MTAlert,
 } from "@material-tailwind/react";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import styles from "../static/theme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { HTMLInputTypeAttribute, ReactNode } from "react";
+import {
+  ChangeEventHandler,
+  HTMLInputTypeAttribute,
+  MouseEventHandler,
+  ReactNode,
+} from "react";
 import { size } from "@material-tailwind/react/types/components/avatar";
-import Image from "next/image";
 import {
   MdBookmark,
   MdStar,
   MdOutlineSearch,
   MdOutlineNotifications,
 } from "react-icons/md";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { firebaseAuth } from "@/app/backend/firebase";
+import { colors } from "@material-tailwind/react/types/generic";
 
 //
 //
@@ -37,15 +48,19 @@ export function Button(props: {
   className?: string;
   variant?: any;
   color?: any;
+  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+  type: "button" | "submit" | "reset" | undefined;
 }) {
   return (
     <MTButton
+      type={props.type}
       className={props.className}
       value={props.title}
       variant={props.variant}
       size="md"
       color={props.color}
       style={{ backgroundColor: styles.light.cta }}
+      onClick={props.onClick}
     >
       {props.title}
     </MTButton>
@@ -58,9 +73,13 @@ export function Input(props: {
   className?: string;
   width?: string | number;
   icon?: ReactNode;
+  name?: string;
+  value?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
 }) {
   return (
     <MTInput
+      onChange={props.onChange}
       icon={props.icon}
       width={props.width}
       className={props.className}
@@ -69,6 +88,8 @@ export function Input(props: {
       crossOrigin={undefined}
       size="lg"
       type={props.label}
+      name={props.name}
+      value={props.value}
     />
   );
 }
@@ -188,3 +209,18 @@ export function NotificationPopUP() {
     </Popover>
   );
 }
+
+export function Alert(props: { children: string; color: colors | undefined }) {
+  return (
+    <MTAlert className="absolute top-0 z-10 text-center" color={props.color}>
+      {props.children}
+    </MTAlert>
+  );
+}
+
+export const signUp = (email: string, password: string) => {
+  return createUserWithEmailAndPassword(firebaseAuth, email, password);
+};
+export const signIn = (email: string, password: string) => {
+  return signInWithEmailAndPassword(firebaseAuth, email, password);
+};

@@ -110,7 +110,7 @@ function App() {
                 and explore our diverse course offerings. Whether you're a
                 novice or an expert,skillZet has something to offer you.
               </p>
-              <Link href={""}>
+              <Link href={"/auth/login"}>
                 <Button
                   style={{ backgroundColor: styles.light.cta }}
                   size="lg"

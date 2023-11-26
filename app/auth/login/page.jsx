@@ -1,12 +1,56 @@
-import { Button, Input } from "../../../public/components/clientComp";
+"use client";
+
+import {
+  Alert,
+  Button,
+  Input,
+  signIn,
+} from "../../../public/components/clientComp";
 import styles from "../../../public/static/theme";
 import Link from "next/link";
 import Image from "next/image";
 import loginSvg from "../../../public/static/loginSvg.svg";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 function LoginPage() {
+  const router = useRouter();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [alert, setAlert] = useState(<></>);
+
+  useEffect(() => {
+    const user_id = localStorage.getItem("user_id");
+    user_id != null ? router.replace("/dashboard") : null;
+  }, [router]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSignIn = () => {
+    setAlert(<></>);
+    signIn(formData.email, formData.password)
+      .then((userCredentials) => {
+        localStorage.setItem("user_id", userCredentials.user.uid);
+        router.replace("/dashboard");
+      })
+      .catch((err) => {
+        console.log(err);
+        setAlert(<Alert color="red">{err.message}</Alert>);
+      });
+  };
+
   return (
     <>
+      {alert}
       <section className="w-full h-screen flex justify-around  to-blue-800 ">
         <div
           style={{ backgroundColor: styles.light.primaryLight }}
@@ -18,9 +62,21 @@ function LoginPage() {
           <h1 className="font-bold text-5xl mb-5">Welcome Back</h1>
           <p></p>
           <form className="h-1/4 w-3/4 flex flex-col justify-around items-center">
-            <Input label="Email" type="email" />
-            <Input label="Password" type="password" />
-            <Button title="LOG IN" className="w-full" />
+            <Input
+              onChange={handleInputChange}
+              label="Email"
+              type="email"
+              name="email"
+              value={formData.email}
+            />
+            <Input
+              onChange={handleInputChange}
+              label="Password"
+              type="password"
+              name="password"
+              value={formData.password}
+            />
+            <Button title="LOG IN" className="w-full" onClick={handleSignIn} />
             <Link href={""} style={{ color: styles.light.cta }}>
               forgot password
             </Link>
