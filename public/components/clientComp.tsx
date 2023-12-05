@@ -40,6 +40,7 @@ import {
 } from "firebase/auth";
 import { firebaseAuth } from "@/app/backend/firebase";
 import { colors } from "@material-tailwind/react/types/generic";
+import Link from "next/link";
 
 //
 //
@@ -125,61 +126,66 @@ export function Avatar(props: {
     />
   );
 }
-export function CardTemplate() {
+export function CardTemplate(props: {
+  onClick?: MouseEventHandler<HTMLDivElement> | undefined;
+  href: string;
+}) {
   return (
-    <Card className="h-fit">
-      <CardHeader>
-        <div className="absolute z-20 w-fit bottom-0 mb-5 ml-3 text-black bg-white p-2 rounded-xl">
-          <p>Cloud Computing</p>
-        </div>
-        <img
-          src="https://i.ytimg.com/vi/9Kvf12FOVW4/maxresdefault.jpg"
-          alt="course thumbnail"
-          className="-z-10 h-full"
-        />
-      </CardHeader>
-
-      {/* Title */}
-      <CardBody>
-        <Typography variant="h5">
-          AWS full course for Absolute Beginners
-        </Typography>
-      </CardBody>
-
-      {/* descriptions */}
-      <CardBody
-        className="flex w-full justify-between items-center h-fit p-0 my-0"
-        style={{ paddingInline: "5%" }}
-      >
-        <div className="flex flex-col ">
-          <Typography variant="small">by Adobe</Typography>
-          <div className="flex">
-            <MdStar size={20} color={styles.light.cta} />
-            <MdStar size={20} color={styles.light.cta} />
-            <MdStar size={20} color={styles.light.cta} />
-            <MdStar size={20} color={styles.light.cta} />
-            <MdStar size={20} color={styles.light.cta} />
+    <Link href={`${props.href}`}>
+      <Card onClick={props.onClick} className="h-fit">
+        <CardHeader>
+          <div className="absolute z-20 w-fit bottom-0 mb-5 ml-3 text-black bg-white p-2 rounded-xl">
+            <p>Cloud Computing</p>
           </div>
-        </div>
-        <div className="flex flex-col ">
-          <Typography variant="small">Duration : 2 weeks</Typography>
-          <Typography variant="small">One Video</Typography>
-        </div>
-      </CardBody>
+          <img
+            src="https://i.ytimg.com/vi/9Kvf12FOVW4/maxresdefault.jpg"
+            alt="course thumbnail"
+            className="-z-10 h-full"
+          />
+        </CardHeader>
 
-      {/* Buttons */}
-      <CardFooter className="flex w-full justify-center items-center ">
-        <MTIconButton color="white">
-          <MdBookmark size={35} />
-        </MTIconButton>
-        <MTButton
-          className=""
-          style={{ width: "70%", backgroundColor: styles.light.cta }}
+        {/* Title */}
+        <CardBody>
+          <Typography variant="h5">
+            AWS full course for Absolute Beginners
+          </Typography>
+        </CardBody>
+
+        {/* descriptions */}
+        <CardBody
+          className="flex w-full justify-between items-center h-fit p-0 my-0"
+          style={{ paddingInline: "5%" }}
         >
-          Start Learning
-        </MTButton>
-      </CardFooter>
-    </Card>
+          <div className="flex flex-col ">
+            <Typography variant="small">by Adobe</Typography>
+            <div className="flex">
+              <MdStar size={20} color={styles.light.cta} />
+              <MdStar size={20} color={styles.light.cta} />
+              <MdStar size={20} color={styles.light.cta} />
+              <MdStar size={20} color={styles.light.cta} />
+              <MdStar size={20} color={styles.light.cta} />
+            </div>
+          </div>
+          <div className="flex flex-col ">
+            <Typography variant="small">Duration : 2 weeks</Typography>
+            <Typography variant="small">One Video</Typography>
+          </div>
+        </CardBody>
+
+        {/* Buttons */}
+        <CardFooter className="flex w-full justify-center items-center ">
+          <MTIconButton color="white">
+            <MdBookmark size={35} />
+          </MTIconButton>
+          <MTButton
+            className=""
+            style={{ width: "70%", backgroundColor: styles.light.cta }}
+          >
+            Start Learning
+          </MTButton>
+        </CardFooter>
+      </Card>
+    </Link>
   );
 }
 

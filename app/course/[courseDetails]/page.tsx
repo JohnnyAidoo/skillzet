@@ -1,14 +1,9 @@
-import {
-  Avatar,
-  CardTemplate,
-  IconButton,
-  Input,
-} from "@/public/components/clientComp";
+import { Avatar, Input } from "@/public/components/clientComp";
 import Header from "@/public/components/header";
 import SideBar from "@/public/components/sideBar";
-import { MdOutlineSearch, MdOutlineNotifications } from "react-icons/md";
+import { MdOutlineNotifications, MdOutlineSearch } from "react-icons/md";
 
-function BookmarkPage() {
+function CourseDetailComp() {
   return (
     <>
       <Header
@@ -37,17 +32,23 @@ function BookmarkPage() {
         }
       />
       <SideBar />
+
       <main
         style={{ width: "79%" }}
         className="float-right flex flex-col bottom-0 px-10"
       >
-        <div className="w-full"> </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-2 gap-y-10">
-          <CardTemplate href={""} />
+        <h1>HtML , CSS Full Course For Absolute Beginners</h1>
+        <div className="aspect-video w-full">
+          <img
+            src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20220714111443/HTML-Introduction.jpg"
+            alt="html css thumbnail"
+            className="rounded-md"
+          />
         </div>
+        <h2>HtML , CSS Full Course For Absolute Beginners</h2>
       </main>
     </>
   );
 }
 
-export default BookmarkPage;
+export default CourseDetailComp;

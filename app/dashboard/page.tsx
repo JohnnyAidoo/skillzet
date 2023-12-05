@@ -16,12 +16,12 @@ function HomePage() {
           style={{ minHeight: "30vh" }}
         ></div>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-2 gap-y-10">
-          <CardTemplate />
-          <CardTemplate />
-          <CardTemplate />
-          <CardTemplate />
-          <CardTemplate />
-          <CardTemplate />
+          <CardTemplate href="/course/1" />
+          <CardTemplate href="/" />
+          <CardTemplate href="/" />
+          <CardTemplate href="/" />
+          <CardTemplate href="/" />
+          <CardTemplate href="/" />
         </div>
       </main>
     </>
