@@ -1,9 +1,25 @@
-import { Avatar, Input } from "@/public/components/clientComp";
+import {
+  Avatar,
+  Backbutton,
+  Button,
+  Input,
+} from "@/public/components/clientComp";
 import Header from "@/public/components/header";
 import SideBar from "@/public/components/sideBar";
-import { MdOutlineNotifications, MdOutlineSearch } from "react-icons/md";
+import styles from "@/public/static/theme";
+import {
+  MdOutlineNotifications,
+  MdOutlineSearch,
+  MdStar,
+  MdPlayArrow,
+  MdPerson,
+  MdMoney,
+  MdTimer,
+  MdOutlineArrowBackIos,
+} from "react-icons/md";
 
 function CourseDetailComp() {
+  const numberOfRating = 5;
   return (
     <>
       <Header
@@ -35,17 +51,104 @@ function CourseDetailComp() {
 
       <main
         style={{ width: "79%" }}
-        className="float-right flex flex-col bottom-0 px-10"
+        className="float-right flex flex-col bottom-0 px-10 h-fit gap-3"
       >
-        <h1>HtML , CSS Full Course For Absolute Beginners</h1>
+        {/* back button */}
+        <Backbutton />
+
+        {/* title */}
+        <h1 className="text-4xl font-bold pb-5">
+          HtML , CSS Full Course For Absolute Beginners
+        </h1>
+
+        {/* thumbnail */}
         <div className="aspect-video w-full">
           <img
-            src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20220714111443/HTML-Introduction.jpg"
+            src="https://i.ytimg.com/vi/9Kvf12FOVW4/maxresdefault.jpg"
             alt="html css thumbnail"
             className="rounded-md"
           />
         </div>
-        <h2>HtML , CSS Full Course For Absolute Beginners</h2>
+
+        {/* title */}
+        <h2 className="text-2xl font-semibold pb-5">
+          HtML , CSS Full Course For Absolute Beginners
+        </h2>
+
+        {/* rating */}
+        <div className="flex">
+          {Array.from({ length: numberOfRating }, (_, index) => (
+            <MdStar key={index} size={25} color={styles.light.cta} />
+          ))}
+        </div>
+
+        {/* description */}
+        <p>
+          An introduction to the intellectual enterprises of computer science
+          and the art of programming.
+        </p>
+        <Button
+          title="Start Learning"
+          icon={<MdPlayArrow size={25} />}
+          className="w-fit flex items-center gap-x-2"
+        />
+        <div className="flex bg-gray-300 w-full justify-between justify-self-center p-5">
+          <b
+            style={{ color: styles.light.cta }}
+            className="flex items-center gap-x-2 text-lg font-semibold"
+          >
+            <MdPerson size={20} /> Self Paced
+          </b>
+          <b
+            style={{ color: styles.light.cta }}
+            className="flex items-center gap-x-2 text-lg font-semibold"
+          >
+            <MdMoney size={20} /> Free
+          </b>
+          <b
+            style={{ color: styles.light.cta }}
+            className="flex items-center gap-x-2 text-lg font-semibold"
+          >
+            <MdTimer size={20} /> 2 weeks
+          </b>
+        </div>
+
+        {/*  */}
+        <b style={{ color: styles.light.cta }}>
+          5,377,987 already enrolled! After a course session ends.
+        </b>
+
+        {/*  */}
+        <div className="w-fit bg-gray-200 px-7 py-3">
+          <p className="font-bold">What You Will Learn</p>
+        </div>
+
+        {/*  */}
+        <ul>
+          <li className="list-disc">
+            A broad and robust understanding of computer science and programming
+          </li>
+          <li className="list-disc">
+            How to think algorithmically and solve programming problems
+            efficiently{" "}
+          </li>
+          <li className="list-disc">
+            Concepts like abstraction, algorithms, data structures,
+            encapsulation, resource management, security, software engineering,
+            and web development{" "}
+          </li>
+          <li className="list-disc">
+            Familiarity in a number of languages, including C, Python, SQL, and
+            JavaScript plus CSS and HTML
+          </li>
+          <li className="list-disc">
+            How to engage with a vibrant community of like-minded learners from
+            all levels of experience
+          </li>
+          <li className="list-disc">
+            How to develop and present a final programming project to your peers
+          </li>
+        </ul>
       </main>
     </>
   );

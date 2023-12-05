@@ -33,6 +33,8 @@ import {
   MdStar,
   MdOutlineSearch,
   MdOutlineNotifications,
+  MdOutlineArrowBackIos,
+  MdOutlineArrowBack,
 } from "react-icons/md";
 import {
   createUserWithEmailAndPassword,
@@ -41,6 +43,7 @@ import {
 import { firebaseAuth } from "@/app/backend/firebase";
 import { colors } from "@material-tailwind/react/types/generic";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 //
 //
@@ -50,7 +53,8 @@ export function Button(props: {
   variant?: any;
   color?: any;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
-  type: "button" | "submit" | "reset" | undefined;
+  type?: "button" | "submit" | "reset" | undefined;
+  icon?: any;
 }) {
   return (
     <MTButton
@@ -63,6 +67,7 @@ export function Button(props: {
       style={{ backgroundColor: styles.light.cta }}
       onClick={props.onClick}
     >
+      {props.icon}
       {props.title}
     </MTButton>
   );
@@ -229,4 +234,19 @@ export const signUp = (email: string, password: string) => {
 };
 export const signIn = (email: string, password: string) => {
   return signInWithEmailAndPassword(firebaseAuth, email, password);
+};
+
+// very custom
+export const Backbutton = ({}) => {
+  const router = useRouter();
+
+  return (
+    <MdOutlineArrowBack
+      size={30}
+      color="grey"
+      onClick={() => {
+        router.back;
+      }}
+    />
+  );
 };
