@@ -44,6 +44,9 @@ import { firebaseAuth } from "@/app/backend/firebase";
 import { colors } from "@material-tailwind/react/types/generic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 //
 //
@@ -135,9 +138,12 @@ export function CardTemplate(props: {
   onClick?: MouseEventHandler<HTMLDivElement> | undefined;
   href: string;
 }) {
+  useEffect(() => {
+    AOS.init();
+  });
   return (
     <Link href={`${props.href}`}>
-      <Card onClick={props.onClick} className="h-fit">
+      <Card data-aos="fade-up" onClick={props.onClick} className="h-fit">
         <CardHeader>
           <div className="absolute z-20 w-fit bottom-0 mb-5 ml-3 text-black bg-white p-2 rounded-xl">
             <p>Cloud Computing</p>

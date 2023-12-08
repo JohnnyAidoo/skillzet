@@ -12,8 +12,13 @@ import Image from "next/image";
 import loginSvg from "../../../public/static/loginSvg.svg";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function LoginPage() {
+  useEffect(() => {
+    AOS.init();
+  });
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -53,6 +58,7 @@ function LoginPage() {
       {alert}
       <section className="w-full h-screen flex justify-around  to-blue-800 ">
         <div
+          data-aos="zoom-in"
           style={{ backgroundColor: styles.light.primaryLight }}
           className="w-1/2 h-full flex flex-col justify-center items-center px-16"
         >
@@ -93,7 +99,7 @@ function LoginPage() {
           </p>
         </div>
         <div className="w-1/2 flex flex-col justify-center rounded-lg bg-gradient-to-r from-white to-indigo-500">
-          <Image src={loginSvg} className="w-full" />
+          <Image data-aos="fade-right" src={loginSvg} className="w-full" />
         </div>
       </section>
     </>

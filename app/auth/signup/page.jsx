@@ -9,11 +9,17 @@ import styles from "../../../public/static/theme";
 import Link from "next/link";
 import Image from "next/image";
 import loginSvg from "../../../public/static/loginSvg.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { updateProfile } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function SignUpPage() {
+  useEffect(() => {
+    AOS.init();
+  });
+
   const router = useRouter();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -56,9 +62,15 @@ function SignUpPage() {
       {alert}
       <section className="w-full h-screen flex justify-around  to-blue-800 ">
         <div className="w-1/2 flex flex-col justify-center rounded-lg bg-gradient-to-r to-white from-indigo-500">
-          <Image src={loginSvg} alt="svg" className="w-full" />
+          <Image
+            data-aos="fade-left"
+            src={loginSvg}
+            alt="svg"
+            className="w-full"
+          />
         </div>
         <div
+          data-aos="zoom-in"
           style={{ backgroundColor: styles.light.primaryLight }}
           className="w-1/2 h-full flex flex-col justify-center items-center px-16"
         >

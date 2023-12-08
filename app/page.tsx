@@ -5,8 +5,15 @@ import Header from "../public/components/header";
 import Link from "next/link";
 import { Button, ButtonGroup } from "@material-tailwind/react";
 import styles from "../public/static/theme";
+import image from "../public/static/ssshape.svg";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
+  useEffect(() => {
+    AOS.init();
+  });
   return (
     <>
       <Header
@@ -40,12 +47,12 @@ function App() {
           </>
         }
       />
-      <main className=" bg-[url('../public/static/ssshape.svg')]  bg-no-repeat bg-left-bottom bg-contain bg-blend-lighten">
+      <main className=" bg-[url('../public/static/ssshape.svg')] bg-no-repeat bg-left-bottom bg-contain bg-blend-lighten">
         <section
           id="hero"
           className="flex justify-center items-center h-full px-16 "
         >
-          <div className="w-2/3 ">
+          <div data-aos="fade-right" className="w-2/3 ">
             <h2 className="text-7xl font-bold mb-10 ">
               <span>Unlock</span> Your Potential. <span>Learn</span>,
               <span>Grow</span>, <span>Succeed</span>.
@@ -57,7 +64,7 @@ function App() {
               world of online learning and personal development.
             </p>
           </div>
-          <div>
+          <div data-aos="fade-left">
             <Image src={heroImg} alt={"hero image"} />
           </div>
         </section>
@@ -69,11 +76,14 @@ function App() {
         >
           <section className="flex justify-start mb-10 px-16  ">
             <div className="w-2/3">
-              <h2 className="text-7xl font-bold mb-10 w-full">
+              <h2
+                data-aos="fade-right"
+                className="text-7xl font-bold mb-10 w-full"
+              >
                 🚀 The Future of Learning is <span>Here</span>
               </h2>
 
-              <p className="w-2/3 font-semibold">
+              <p data-aos="fade-up" className="w-2/3 font-semibold">
                 At <span className="font-bold">skillZet</span> , we believe that
                 learning is a lifelong adventure. Our platform offers an
                 extensive range of courses designed to empower you with the
@@ -87,11 +97,17 @@ function App() {
           {/*  */}
           <section className="flex justify-end mb-10 px-16">
             <div className="w-2/3">
-              <h2 className="text-7xl font-bold mb-10 w-full text-end">
+              <h2
+                data-aos="fade-left"
+                className="text-7xl font-bold mb-10 w-full text-end"
+              >
                 🌎 Join a Global Learning <span>Community</span>
               </h2>
               <div className="flex justify-end self-end">
-                <p className="w-1/2 font-semibold justify-end text-end">
+                <p
+                  data-aos="fade-up"
+                  className="w-1/2 font-semibold justify-end text-end"
+                >
                   At <span className="font-bold">skillZet</span>, we foster a
                   global community of learners. Share your knowledge, learn from
                   others, and grow together. Your journey begins now!
@@ -105,13 +121,17 @@ function App() {
             <div className=" w-3/4 flex flex-col items-center justify-center ">
               <h2 className="text-7xl font-bold mb-10 ">Get Started Today</h2>
 
-              <p className="w-2/3 text-center font-semibold mb-5">
+              <p
+                data-aos="fade-up"
+                className="w-2/3 text-center font-semibold mb-5"
+              >
                 Ready to embark on your learning journey? Take the first step
                 and explore our diverse course offerings. Whether you're a
                 novice or an expert,skillZet has something to offer you.
               </p>
               <Link href={"/auth/login"}>
                 <Button
+                  data-aos="zoom-in"
                   style={{ backgroundColor: styles.light.cta }}
                   size="lg"
                   className="px-28"
