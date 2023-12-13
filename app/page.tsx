@@ -5,7 +5,6 @@ import Header from "../public/components/header";
 import Link from "next/link";
 import { Button, ButtonGroup } from "@material-tailwind/react";
 import styles from "../public/static/theme";
-import image from "../public/static/ssshape.svg";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";

@@ -42,9 +42,7 @@ function BookmarkPage() {
         className="float-right flex flex-col bottom-0 px-10"
       >
         <div className="w-full"> </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-2 gap-y-10">
-          <CardTemplate href={""} />
-        </div>
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-2 gap-y-10"></div>
       </main>
     </>
   );

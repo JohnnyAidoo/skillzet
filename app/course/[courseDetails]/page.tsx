@@ -1,3 +1,4 @@
+"use client";
 import {
   Avatar,
   Backbutton,
@@ -7,6 +8,7 @@ import {
 import Header from "@/public/components/header";
 import SideBar from "@/public/components/sideBar";
 import styles from "@/public/static/theme";
+import { useRouter } from "next/navigation";
 import {
   MdOutlineNotifications,
   MdOutlineSearch,
@@ -17,8 +19,14 @@ import {
   MdTimer,
   MdOutlineArrowBackIos,
 } from "react-icons/md";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function CourseDetailComp() {
+  useEffect(() => {
+    AOS.init();
+  });
   const numberOfRating = 5;
   return (
     <>
@@ -54,7 +62,7 @@ function CourseDetailComp() {
         className="float-right flex flex-col bottom-0 px-10 h-fit gap-3"
       >
         {/* back button */}
-        <Backbutton />
+        <Backbutton data-aos="fade-right" />
 
         {/* title */}
         <h1 className="text-4xl font-bold pb-5">
@@ -62,7 +70,7 @@ function CourseDetailComp() {
         </h1>
 
         {/* thumbnail */}
-        <div className="aspect-video w-full">
+        <div className="aspect-video w-full" data-aos="fade-up">
           <img
             src="https://i.ytimg.com/vi/9Kvf12FOVW4/maxresdefault.jpg"
             alt="html css thumbnail"
@@ -71,14 +79,16 @@ function CourseDetailComp() {
         </div>
 
         {/* title */}
-        <h2 className="text-2xl font-semibold pb-5">
+        <h2 className="text-2xl font-semibold pb-5" data-aos="fade-up">
           HtML , CSS Full Course For Absolute Beginners
         </h2>
 
         {/* rating */}
         <div className="flex">
           {Array.from({ length: numberOfRating }, (_, index) => (
-            <MdStar key={index} size={25} color={styles.light.cta} />
+            <div data-aos="fade-right">
+              <MdStar key={index} size={25} color={styles.light.cta} />
+            </div>
           ))}
         </div>
 

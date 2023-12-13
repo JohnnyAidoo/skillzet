@@ -84,11 +84,11 @@ export function Input(props: {
   icon?: ReactNode;
   name?: string;
   value?: string;
-  onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
+  onClick?: MouseEventHandler<HTMLInputElement> | undefined;
 }) {
   return (
     <MTInput
-      onChange={props.onChange}
+      onClick={props.onClick}
       icon={props.icon}
       width={props.width}
       className={props.className}
@@ -137,19 +137,29 @@ export function Avatar(props: {
 export function CardTemplate(props: {
   onClick?: MouseEventHandler<HTMLDivElement> | undefined;
   href: string;
+  video_url: string;
+  title: string;
+  duration: string;
+  owner: string;
+  type: string;
+  category: string;
 }) {
   useEffect(() => {
     AOS.init();
   });
+  const regex = /(?<=\?v=)(.*?)(?=&|$)/;
+  const match = regex.exec(props.video_url);
+  const videoID = match ? match[0] : null;
+
   return (
     <Link href={`${props.href}`}>
-      <Card data-aos="fade-up" onClick={props.onClick} className="h-fit">
+      <Card data-aos="fade-up " onClick={props.onClick} className="h-fit">
         <CardHeader>
           <div className="absolute z-20 w-fit bottom-0 mb-5 ml-3 text-black bg-white p-2 rounded-xl">
-            <p>Cloud Computing</p>
+            <p>{props.category}</p>
           </div>
           <img
-            src="https://i.ytimg.com/vi/9Kvf12FOVW4/maxresdefault.jpg"
+            src={`https://i.ytimg.com/vi/${videoID}/maxresdefault.jpg`}
             alt="course thumbnail"
             className="-z-10 h-full"
           />
@@ -157,9 +167,7 @@ export function CardTemplate(props: {
 
         {/* Title */}
         <CardBody>
-          <Typography variant="h5">
-            AWS full course for Absolute Beginners
-          </Typography>
+          <Typography variant="h5">{props.title}</Typography>
         </CardBody>
 
         {/* descriptions */}
@@ -168,7 +176,7 @@ export function CardTemplate(props: {
           style={{ paddingInline: "5%" }}
         >
           <div className="flex flex-col ">
-            <Typography variant="small">by Adobe</Typography>
+            <Typography variant="small">{props.owner}</Typography>
             <div className="flex">
               <MdStar size={20} color={styles.light.cta} />
               <MdStar size={20} color={styles.light.cta} />
@@ -178,8 +186,8 @@ export function CardTemplate(props: {
             </div>
           </div>
           <div className="flex flex-col ">
-            <Typography variant="small">Duration : 2 weeks</Typography>
-            <Typography variant="small">One Video</Typography>
+            <Typography variant="small">Duration : {props.duration}</Typography>
+            <Typography variant="small">{props.type}</Typography>
           </div>
         </CardBody>
 
@@ -251,7 +259,7 @@ export const Backbutton = ({}) => {
       size={30}
       color="grey"
       onClick={() => {
-        router.back;
+        router.back();
       }}
     />
   );

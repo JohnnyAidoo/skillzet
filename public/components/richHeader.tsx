@@ -15,7 +15,7 @@ function RichHeader() {
   const get_user = async () => {
     onAuthStateChanged(firebaseAuth, (user) => {
       if (user) {
-        console.log(user);
+        // console.log(user);
       }
     });
   };
