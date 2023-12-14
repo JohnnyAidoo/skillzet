@@ -8,7 +8,6 @@ import {
 import Header from "@/public/components/header";
 import SideBar from "@/public/components/sideBar";
 import styles from "@/public/static/theme";
-import { useRouter } from "next/navigation";
 import {
   MdOutlineNotifications,
   MdOutlineSearch,
@@ -17,16 +16,45 @@ import {
   MdPerson,
   MdMoney,
   MdTimer,
-  MdOutlineArrowBackIos,
 } from "react-icons/md";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useParams } from "next/navigation";
+import { doc, getDoc } from "firebase/firestore";
+import { firebaseStore } from "@/app/backend/firebase";
 
 function CourseDetailComp() {
+  type Course = {
+    id: string;
+    title: string;
+    course_type: string;
+    date_uploaded: any;
+    rating: number;
+    owner: string;
+    video_url: string;
+    duration: string;
+    course_category: string;
+  };
+  const params = useParams();
+  const uid = params.courseDetails;
+  const [couresDetail, setCourseDetail] = useState<Course>();
+
   useEffect(() => {
     AOS.init();
+    getCourse();
   });
+
+  const getCourse = async () => {
+    const docRef = await doc(firebaseStore, "Course", uid as string);
+    const docSnap = await getDoc(docRef);
+
+    setCourseDetail(docSnap.data() as Course);
+  };
+  const regex = /(?<=\?v=)(.*?)(?=&|$)/;
+  const match = regex.exec(couresDetail?.video_url as string);
+  const videoID = match ? match[0] : null;
+
   const numberOfRating = 5;
   return (
     <>
@@ -65,14 +93,12 @@ function CourseDetailComp() {
         <Backbutton data-aos="fade-right" />
 
         {/* title */}
-        <h1 className="text-4xl font-bold pb-5">
-          HtML , CSS Full Course For Absolute Beginners
-        </h1>
+        <h1 className="text-4xl font-bold pb-5">{couresDetail?.title}</h1>
 
         {/* thumbnail */}
         <div className="aspect-video w-full" data-aos="fade-up">
           <img
-            src="https://i.ytimg.com/vi/9Kvf12FOVW4/maxresdefault.jpg"
+            src={`https://i.ytimg.com/vi/${videoID}/maxresdefault.jpg`}
             alt="html css thumbnail"
             className="rounded-md"
           />
@@ -80,16 +106,19 @@ function CourseDetailComp() {
 
         {/* title */}
         <h2 className="text-2xl font-semibold pb-5" data-aos="fade-up">
-          HtML , CSS Full Course For Absolute Beginners
+          {couresDetail?.title}
         </h2>
 
         {/* rating */}
         <div className="flex">
-          {Array.from({ length: numberOfRating }, (_, index) => (
-            <div data-aos="fade-right">
-              <MdStar key={index} size={25} color={styles.light.cta} />
-            </div>
-          ))}
+          {Array.from(
+            { length: couresDetail?.rating as number },
+            (_, index) => (
+              <div data-aos="fade-right">
+                <MdStar key={index} size={35} color={styles.light.cta} />
+              </div>
+            )
+          )}
         </div>
 
         {/* description */}
@@ -125,7 +154,7 @@ function CourseDetailComp() {
 
         {/*  */}
         <b style={{ color: styles.light.cta }}>
-          5,377,987 already enrolled! After a course session ends.
+          5,377 already enrolled! After a course session ends.
         </b>
 
         {/*  */}

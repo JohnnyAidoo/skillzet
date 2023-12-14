@@ -65,6 +65,7 @@ function HomePage() {
               owner={item.owner}
               type={item.course_type}
               video_url={item.video_url}
+              rating={item.rating}
             />
           ))}
         </div>

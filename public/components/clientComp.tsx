@@ -143,6 +143,7 @@ export function CardTemplate(props: {
   owner: string;
   type: string;
   category: string;
+  rating: number;
 }) {
   useEffect(() => {
     AOS.init();
@@ -176,13 +177,16 @@ export function CardTemplate(props: {
           style={{ paddingInline: "5%" }}
         >
           <div className="flex flex-col ">
+            {/* owner */}
             <Typography variant="small">{props.owner}</Typography>
+
+            {/* rating */}
             <div className="flex">
-              <MdStar size={20} color={styles.light.cta} />
-              <MdStar size={20} color={styles.light.cta} />
-              <MdStar size={20} color={styles.light.cta} />
-              <MdStar size={20} color={styles.light.cta} />
-              <MdStar size={20} color={styles.light.cta} />
+              {Array.from({ length: props.rating }, (_, index) => (
+                <div>
+                  <MdStar key={index} size={25} color={styles.light.cta} />
+                </div>
+              ))}
             </div>
           </div>
           <div className="flex flex-col ">
