@@ -5,8 +5,11 @@ import SideBar from "@/public/components/sideBar";
 import { collection, doc, getDocs } from "firebase/firestore";
 import { firebaseStore } from "../backend/firebase";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 function HomePage() {
+  const router = useRouter();
+
   const [courseList, setCourses] = useState<Course[]>();
 
   type Course = {
@@ -41,6 +44,10 @@ function HomePage() {
   useEffect(() => {
     get_data();
   }, []);
+  useEffect(() => {
+    const user_id = localStorage.getItem("user_id");
+    user_id != null ? router.replace("/dashboard") : null;
+  }, [router]);
 
   return (
     <>
