@@ -17,6 +17,7 @@ import {
   ListItem,
   Badge,
   Alert as MTAlert,
+  Textarea,
 } from "@material-tailwind/react";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import styles from "../static/theme";
@@ -83,8 +84,9 @@ export function Input(props: {
   width?: string | number;
   icon?: ReactNode;
   name?: string;
-  value?: string;
+  value?: string | number | readonly string[] | undefined;
   onClick?: MouseEventHandler<HTMLInputElement> | undefined;
+  onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
 }) {
   return (
     <MTInput
@@ -99,10 +101,10 @@ export function Input(props: {
       type={props.label}
       name={props.name}
       value={props.value}
+      onChange={props.onChange}
     />
   );
 }
-
 export function IconButton(props: {
   icon: IconDefinition;
   className?: string;
@@ -239,7 +241,10 @@ export function NotificationPopUP() {
   );
 }
 
-export function Alert(props: { children: string; color: colors | undefined }) {
+export function Alert(props: {
+  children: ReactNode;
+  color: colors | undefined;
+}) {
   return (
     <MTAlert className="absolute top-0 z-10 text-center" color={props.color}>
       {props.children}
