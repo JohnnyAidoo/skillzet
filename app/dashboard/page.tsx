@@ -24,26 +24,25 @@ function HomePage() {
     course_category: string;
   };
 
-  const get_data = async () => {
-    const collection_ref = collection(firebaseStore, "Course");
-    const doc_ref = await getDocs(collection_ref);
-
-    let courses: Course[] = [];
-
-    const courseData = doc_ref.forEach((doc) => {
-      courses.push({ id: doc.id, ...doc.data() } as Course);
-    });
-
-    setCourses(courses);
-
-    doc_ref.forEach((doc) => {
-      console.log(doc.id, "=>", doc.data());
-    });
-  };
-
   useEffect(() => {
-    get_data();
-  }, []);
+    const get_data = async () => {
+      const collection_ref = collection(firebaseStore, "Course");
+      const doc_ref = await getDocs(collection_ref);
+
+      let courses: Course[] = [];
+
+      const courseData = doc_ref.forEach((doc) => {
+        courses.push({ id: doc.id, ...doc.data() } as Course);
+      });
+
+      setCourses(courses);
+
+      doc_ref.forEach((doc) => {
+        console.log(doc.id, "=>", doc.data());
+      });
+    };
+  });
+
   useEffect(() => {
     const user_id = localStorage.getItem("user_id");
     user_id != null ? router.replace("/dashboard") : null;

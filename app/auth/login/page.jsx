@@ -88,7 +88,7 @@ function LoginPage() {
             </Link>
           </form>
           <p>
-            Don't have an Account ?{" "}
+            Do not have an Account ?
             <Link
               style={{ color: styles.light.cta }}
               className="font-semibold"
@@ -99,7 +99,12 @@ function LoginPage() {
           </p>
         </div>
         <div className="w-1/2 flex flex-col justify-center rounded-lg bg-gradient-to-r from-white to-indigo-500">
-          <Image data-aos="fade-right" src={loginSvg} className="w-full" />
+          <Image
+            data-aos="fade-right"
+            src={loginSvg}
+            className="w-full"
+            alt="logo image"
+          />
         </div>
       </section>
     </>

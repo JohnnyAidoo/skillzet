@@ -23,6 +23,7 @@ import "aos/dist/aos.css";
 import { useParams } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { firebaseStore } from "@/app/backend/firebase";
+import Image from "next/image";
 
 function CourseDetailComp() {
   type Course = {
@@ -59,7 +60,7 @@ function CourseDetailComp() {
   return (
     <>
       <Header
-        children={
+        sub={
           <>
             <div className="w-1/3 mx-10">
               <Input
@@ -97,7 +98,7 @@ function CourseDetailComp() {
 
         {/* thumbnail */}
         <div className="aspect-video w-full" data-aos="fade-up">
-          <img
+          <Image
             src={`https://i.ytimg.com/vi/${videoID}/maxresdefault.jpg`}
             alt="html css thumbnail"
             className="rounded-md"
@@ -114,7 +115,7 @@ function CourseDetailComp() {
           {Array.from(
             { length: couresDetail?.rating as number },
             (_, index) => (
-              <div data-aos="fade-right">
+              <div key={index} data-aos="fade-right">
                 <MdStar key={index} size={35} color={styles.light.cta} />
               </div>
             )

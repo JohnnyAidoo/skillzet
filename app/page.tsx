@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       <Header
-        children={
+        sub={
           <>
             <div className="w-1/2"></div>
             <ButtonGroup variant="filled" size="md">
@@ -125,7 +125,7 @@ function App() {
                 className="w-2/3 text-center font-semibold mb-5"
               >
                 Ready to embark on your learning journey? Take the first step
-                and explore our diverse course offerings. Whether you're a
+                and explore our diverse course offerings. Whether you are a
                 novice or an expert,skillZet has something to offer you.
               </p>
               <Link href={"/auth/login"}>

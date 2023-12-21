@@ -12,7 +12,7 @@ function BookmarkPage() {
   return (
     <>
       <Header
-        children={
+        sub={
           <>
             <div className="w-1/3 mx-10">
               <Input
