@@ -41,7 +41,8 @@ function HomePage() {
         console.log(doc.id, "=>", doc.data());
       });
     };
-  });
+    get_data();
+  },[]);
 
   useEffect(() => {
     const user_id = localStorage.getItem("user_id");
