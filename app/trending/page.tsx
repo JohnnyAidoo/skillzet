@@ -22,14 +22,7 @@ function TrendPage() {
           <QuickTab value="code" />
           <QuickTab value="code" />
         </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-2 gap-y-10">
-          <CardTemplate />
-          <CardTemplate />
-          <CardTemplate />
-          <CardTemplate />
-          <CardTemplate />
-          <CardTemplate />
-        </div>
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-2 gap-y-10"></div>
       </main>
     </>
   );
