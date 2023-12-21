@@ -37,10 +37,6 @@ function SignUpPage() {
       [name]: value,
     });
   };
-  onsubmit = (e) => {
-    e.preventDefault;
-    handleSignUp();
-  };
 
   const handleSignUp = (e) => {
     setAlert(<></>);
