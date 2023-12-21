@@ -102,6 +102,10 @@ function CourseDetailComp() {
             src={`https://i.ytimg.com/vi/${videoID}/maxresdefault.jpg`}
             alt="html css thumbnail"
             className="rounded-md"
+            width={0}
+            height={0}
+            sizes="100vw"
+            style={{ width: "100%", height: "100%" }}
           />
         </div>
 
