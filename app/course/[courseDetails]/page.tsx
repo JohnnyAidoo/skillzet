@@ -16,6 +16,7 @@ import {
   MdPerson,
   MdMoney,
   MdTimer,
+  MdPlayCircle,
 } from "react-icons/md";
 import { useEffect, useState } from "react";
 import AOS from "aos";
@@ -38,16 +39,16 @@ function CourseDetailComp() {
     course_category: string;
   };
   const params = useParams();
-  const uid = params.courseDetails;
+  const courseID = params.courseDetails;
   const [couresDetail, setCourseDetail] = useState<Course>();
 
   useEffect(() => {
     AOS.init();
     getCourse();
-  });
+  }, []);
 
   const getCourse = async () => {
-    const docRef = await doc(firebaseStore, "Course", uid as string);
+    const docRef = await doc(firebaseStore, "Course", courseID as string);
     const docSnap = await getDoc(docRef);
 
     setCourseDetail(docSnap.data() as Course);
@@ -72,7 +73,7 @@ function CourseDetailComp() {
             <div className="flex items-center justify-between ">
               <MdOutlineNotifications
                 size={30}
-                className="mx-2 rounded-xl hover:bg-gray-400"
+                className="mx-2 rounded-xl hover:bg-gray-600"
               />
 
               <Avatar
@@ -88,16 +89,16 @@ function CourseDetailComp() {
 
       <main
         style={{ width: "79%" }}
-        className="float-right flex flex-col bottom-0 px-10 h-fit gap-3"
+        className="bottom-0 flex flex-col float-right gap-3 px-10 h-fit"
       >
         {/* back button */}
         <Backbutton data-aos="fade-right" />
 
         {/* title */}
-        <h1 className="text-4xl font-bold pb-5">{couresDetail?.title}</h1>
+        <h1 className="pb-5 text-4xl font-bold">{couresDetail?.title}</h1>
 
         {/* thumbnail */}
-        <div className="aspect-video w-full" data-aos="fade-up">
+        <div className="w-full aspect-video" data-aos="fade-up">
           <Image
             src={`https://i.ytimg.com/vi/${videoID}/maxresdefault.jpg`}
             alt="html css thumbnail"
@@ -110,7 +111,7 @@ function CourseDetailComp() {
         </div>
 
         {/* title */}
-        <h2 className="text-2xl font-semibold pb-5" data-aos="fade-up">
+        <h2 className="pb-5 text-2xl font-semibold" data-aos="fade-up">
           {couresDetail?.title}
         </h2>
 
@@ -131,27 +132,31 @@ function CourseDetailComp() {
           An introduction to the intellectual enterprises of computer science
           and the art of programming.
         </p>
-        <Button
-          title="Start Learning"
-          icon={<MdPlayArrow size={25} />}
-          className="w-fit flex items-center gap-x-2"
-        />
-        <div className="flex bg-gray-300 w-full justify-between justify-self-center p-5">
+
+        {/* start learning button */}
+        <a href={`/learn/${videoID}`}>
+          <Button
+            title="Start Learning"
+            icon={<MdPlayArrow size={25} />}
+            className="flex items-center w-fit gap-x-2"
+          />
+        </a>
+        <div className="flex justify-between w-full p-5 px-10 bg-gray-300 justify-self-center">
           <b
             style={{ color: styles.light.cta }}
-            className="flex items-center gap-x-2 text-lg font-semibold"
+            className="flex items-center text-lg font-semibold gap-x-2"
           >
             <MdPerson size={20} /> Self Paced
           </b>
           <b
             style={{ color: styles.light.cta }}
-            className="flex items-center gap-x-2 text-lg font-semibold"
+            className="flex items-center text-lg font-semibold gap-x-2"
           >
             <MdMoney size={20} /> Free
           </b>
           <b
             style={{ color: styles.light.cta }}
-            className="flex items-center gap-x-2 text-lg font-semibold"
+            className="flex items-center text-lg font-semibold gap-x-2"
           >
             <MdTimer size={20} /> 2 weeks
           </b>
@@ -163,7 +168,7 @@ function CourseDetailComp() {
         </b>
 
         {/*  */}
-        <div className="w-fit bg-gray-200 px-7 py-3">
+        <div className="py-3 bg-gray-200 w-fit px-7">
           <p className="font-bold">What You Will Learn</p>
         </div>
 

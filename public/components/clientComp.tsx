@@ -158,13 +158,13 @@ export function CardTemplate(props: {
     <Link href={`${props.href}`}>
       <Card data-aos="fade-up " onClick={props.onClick} className="h-fit">
         <CardHeader>
-          <div className="absolute z-20 w-fit bottom-0 mb-5 ml-3 text-black bg-white p-2 rounded-xl">
+          <div className="absolute bottom-0 z-20 p-2 mb-5 ml-3 text-black bg-white w-fit rounded-xl">
             <p>{props.category}</p>
           </div>
           <img
             src={`https://i.ytimg.com/vi/${videoID}/maxresdefault.jpg`}
             alt="course thumbnail"
-            className="-z-10 h-full"
+            className="h-full -z-10"
           />
         </CardHeader>
 
@@ -175,7 +175,7 @@ export function CardTemplate(props: {
 
         {/* descriptions */}
         <CardBody
-          className="flex w-full justify-between items-center h-fit p-0 my-0"
+          className="flex items-center justify-between w-full p-0 my-0 h-fit"
           style={{ paddingInline: "5%" }}
         >
           <div className="flex flex-col ">
@@ -198,7 +198,7 @@ export function CardTemplate(props: {
         </CardBody>
 
         {/* Buttons */}
-        <CardFooter className="flex w-full justify-center items-center ">
+        <CardFooter className="flex items-center justify-center w-full ">
           <MTIconButton color="white">
             <MdBookmark size={35} />
           </MTIconButton>
@@ -265,6 +265,7 @@ export const Backbutton = ({}) => {
 
   return (
     <MdOutlineArrowBack
+      className="hover:bg-gray-600"
       size={30}
       color="grey"
       onClick={() => {
