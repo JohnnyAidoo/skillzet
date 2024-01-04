@@ -37,6 +37,7 @@ function CourseDetailComp() {
     video_url: string;
     duration: string;
     course_category: string;
+    description: string;
   };
   const params = useParams();
   const courseID = params.courseDetails;
@@ -173,31 +174,7 @@ function CourseDetailComp() {
         </div>
 
         {/*  */}
-        <ul>
-          <li className="list-disc">
-            A broad and robust understanding of computer science and programming
-          </li>
-          <li className="list-disc">
-            How to think algorithmically and solve programming problems
-            efficiently{" "}
-          </li>
-          <li className="list-disc">
-            Concepts like abstraction, algorithms, data structures,
-            encapsulation, resource management, security, software engineering,
-            and web development{" "}
-          </li>
-          <li className="list-disc">
-            Familiarity in a number of languages, including C, Python, SQL, and
-            JavaScript plus CSS and HTML
-          </li>
-          <li className="list-disc">
-            How to engage with a vibrant community of like-minded learners from
-            all levels of experience
-          </li>
-          <li className="list-disc">
-            How to develop and present a final programming project to your peers
-          </li>
-        </ul>
+        <div className="px-5 font-body">{couresDetail?.description}</div>
       </main>
     </>
   );
