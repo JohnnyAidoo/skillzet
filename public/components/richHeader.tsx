@@ -7,22 +7,35 @@ import {
 } from "@/public/components/clientComp";
 
 import Header from "@/public/components/header";
-import { onAuthStateChanged } from "firebase/auth";
+import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  Button,
+  List,
+  ListItem,
+  ListItemPrefix,
+  Popover,
+  PopoverContent,
+  PopoverHandler,
+} from "@material-tailwind/react";
+import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 
 function RichHeader() {
-  const get_user = async () => {
-    onAuthStateChanged(firebaseAuth, (user) => {
-      if (user) {
-        // console.log(user);
-      }
-    });
-  };
+  const router = useRouter();
 
-  useEffect(() => {
-    get_user();
-  });
+  const logout = () => {
+    signOut(firebaseAuth)
+      .then(() => {
+        localStorage.removeItem("user_id");
+        router.push("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <Header
       sub={
@@ -36,11 +49,27 @@ function RichHeader() {
           </div>
           <div className="flex items-center justify-between ">
             <NotificationPopUP />
-            <Avatar
-              className="mx-2"
-              src="https://docs.material-tailwind.com/img/face-2.jpg"
-              alt="l"
-            />
+            <Popover placement="bottom">
+              <PopoverHandler>
+                <Button size="sm" color="white" className="shadow-none">
+                  <Avatar
+                    className="mx-2"
+                    src="https://docs.material-tailwind.com/img/face-2.jpg"
+                    alt="l"
+                  />
+                </Button>
+              </PopoverHandler>
+              <PopoverContent>
+                <List>
+                  <ListItem color="red" onClick={logout}>
+                    <ListItemPrefix>
+                      <FontAwesomeIcon icon={faPowerOff} />
+                    </ListItemPrefix>
+                    Logout{" "}
+                  </ListItem>
+                </List>
+              </PopoverContent>
+            </Popover>
           </div>
         </>
       }

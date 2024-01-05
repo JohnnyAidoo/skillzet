@@ -129,10 +129,10 @@ function CourseDetailComp() {
         </div>
 
         {/* description */}
-        <p>
+        {/* <p>
           An introduction to the intellectual enterprises of computer science
           and the art of programming.
-        </p>
+        </p> */}
 
         {/* start learning button */}
         <a href={`/learn/${videoID}`}>

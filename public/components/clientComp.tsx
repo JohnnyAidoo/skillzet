@@ -155,62 +155,62 @@ export function CardTemplate(props: {
   const videoID = match ? match[0] : null;
 
   return (
-    <Link href={`${props.href}`}>
-      <Card data-aos="fade-up " onClick={props.onClick} className="h-fit">
-        <CardHeader>
-          <div className="absolute bottom-0 z-20 p-2 mb-5 ml-3 text-black bg-white w-fit rounded-xl">
-            <p>{props.category}</p>
+    <Card data-aos="fade-up " onClick={props.onClick} className="h-fit">
+      <CardHeader>
+        <div className="absolute bottom-0 z-20 p-2 mb-5 ml-3 text-black bg-white w-fit rounded-xl">
+          <p>{props.category}</p>
+        </div>
+        <img
+          src={`https://i.ytimg.com/vi/${videoID}/maxresdefault.jpg`}
+          alt="course thumbnail"
+          className="h-full -z-10"
+        />
+      </CardHeader>
+
+      {/* Title */}
+      <CardBody>
+        <Typography variant="h5">{props.title}</Typography>
+      </CardBody>
+
+      {/* descriptions */}
+      <CardBody
+        className="flex items-center justify-between w-full p-0 my-0 h-fit"
+        style={{ paddingInline: "5%" }}
+      >
+        <div className="flex flex-col ">
+          {/* owner */}
+          <Typography variant="small">{props.owner}</Typography>
+
+          {/* rating */}
+          <div className="flex">
+            {Array.from({ length: props.rating }, (_, index) => (
+              <div>
+                <MdStar key={index} size={25} color={styles.light.cta} />
+              </div>
+            ))}
           </div>
-          <img
-            src={`https://i.ytimg.com/vi/${videoID}/maxresdefault.jpg`}
-            alt="course thumbnail"
-            className="h-full -z-10"
-          />
-        </CardHeader>
+        </div>
+        <div className="flex flex-col ">
+          <Typography variant="small">Duration : {props.duration}</Typography>
+          <Typography variant="small">{props.type}</Typography>
+        </div>
+      </CardBody>
 
-        {/* Title */}
-        <CardBody>
-          <Typography variant="h5">{props.title}</Typography>
-        </CardBody>
-
-        {/* descriptions */}
-        <CardBody
-          className="flex items-center justify-between w-full p-0 my-0 h-fit"
-          style={{ paddingInline: "5%" }}
-        >
-          <div className="flex flex-col ">
-            {/* owner */}
-            <Typography variant="small">{props.owner}</Typography>
-
-            {/* rating */}
-            <div className="flex">
-              {Array.from({ length: props.rating }, (_, index) => (
-                <div>
-                  <MdStar key={index} size={25} color={styles.light.cta} />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-col ">
-            <Typography variant="small">Duration : {props.duration}</Typography>
-            <Typography variant="small">{props.type}</Typography>
-          </div>
-        </CardBody>
-
-        {/* Buttons */}
-        <CardFooter className="flex items-center justify-center w-full ">
-          <MTIconButton color="white">
-            <MdBookmark size={35} />
-          </MTIconButton>
+      {/* Buttons */}
+      <CardFooter className="flex items-center justify-between w-full ">
+        <MTIconButton color="white">
+          <MdBookmark size={35} />
+        </MTIconButton>
+        <Link href={`${props.href}`} className="w-3/4">
           <MTButton
-            className=""
-            style={{ width: "70%", backgroundColor: styles.light.cta }}
+            className="w-full"
+            style={{ backgroundColor: styles.light.cta }}
           >
             Start Learning
           </MTButton>
-        </CardFooter>
-      </Card>
-    </Link>
+        </Link>
+      </CardFooter>
+    </Card>
   );
 }
 

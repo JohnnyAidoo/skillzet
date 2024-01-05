@@ -4,8 +4,10 @@ import { Alert, Button, Input } from "@/public/components/clientComp";
 import { firebaseStore } from "../backend/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { Textarea } from "@material-tailwind/react";
+import { useRouter } from "next/navigation";
 
 function Upload() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
     course_category: "",
@@ -26,9 +28,12 @@ function Upload() {
     const collection_ref = collection(firebaseStore, "Course");
     try {
       const docref = await addDoc(collection_ref, formData);
-      docref.id
-        ? seAlert(<Alert color="green"> Course Uploaded</Alert>)
-        : seAlert(<Alert color="red"> Error Occurred </Alert>);
+      if (docref.id) {
+        seAlert(<Alert color="green"> Course Uploaded</Alert>);
+        router.refresh();
+      } else {
+        seAlert(<Alert color="red"> Error Occurred </Alert>);
+      }
     } catch (err) {
       seAlert(<Alert color="red"> Error Occurred </Alert>);
     }
@@ -38,9 +43,9 @@ function Upload() {
   return (
     <>
       {alert}
-      <div className=" flex flex-col justify-center items-center">
+      <div className="flex flex-col items-center justify-center ">
         <h1>Upload course</h1>
-        <form style={{ width: "70vw" }} className="gap-2 flex flex-col">
+        <form style={{ width: "70vw" }} className="flex flex-col gap-2">
           <Input
             label="title"
             type="text"
@@ -100,6 +105,7 @@ function Upload() {
         </form>
         <Button title="Upload " onClick={upload_course} />
       </div>
+      {alert}
     </>
   );
 }
