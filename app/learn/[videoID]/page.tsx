@@ -3,6 +3,7 @@ import { Backbutton } from "@/public/components/clientComp";
 import RichHeader from "@/public/components/richHeader";
 import SideBar from "@/public/components/sideBar";
 import { Spinner, Typography } from "@material-tailwind/react";
+import { getDoc, updateDoc } from "firebase/firestore";
 import { Metadata } from "next";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -43,6 +44,14 @@ function Learn() {
     });
   };
 
+  const onPlayerStateChange = (event: any) => {
+    if (event.data == 0) {
+      // const documentRef = getDoc()
+      // updateDoc(documentRef)
+    }
+    localStorage.setItem(videoId as string, event.target.getCurrentTime());
+  };
+
   return (
     <>
       <RichHeader />
@@ -70,12 +79,7 @@ function Learn() {
             }}
             loading={"eager"}
             onReady={onPlayerReady}
-            onStateChange={(event) => {
-              localStorage.setItem(
-                videoId as string,
-                event.target.getCurrentTime()
-              );
-            }}
+            onStateChange={onPlayerStateChange}
           />
         </div>
         <Typography variant="h2">{videoDetails.title}</Typography>

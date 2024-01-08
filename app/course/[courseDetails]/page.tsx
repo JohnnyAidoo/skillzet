@@ -16,7 +16,6 @@ import {
   MdPerson,
   MdMoney,
   MdTimer,
-  MdPlayCircle,
 } from "react-icons/md";
 import { useEffect, useState } from "react";
 import AOS from "aos";
