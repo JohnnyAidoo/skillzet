@@ -29,7 +29,7 @@ function RichHeader() {
   const logout = () => {
     signOut(firebaseAuth)
       .then(() => {
-        localStorage.removeItem("user_id");
+        localStorage.clear();
         router.push("/login");
       })
       .catch((err) => {

@@ -129,6 +129,10 @@ function CourseDetailComp() {
         </div>
 
         {/* description */}
+        <div className="flex items-center ">
+          <b className="text-gray-500">Course Arthur : </b>
+          <h4 className="px-3 text-2xl font-semibold">{couresDetail?.owner}</h4>
+        </div>
         {/* <p>
           An introduction to the intellectual enterprises of computer science
           and the art of programming.
