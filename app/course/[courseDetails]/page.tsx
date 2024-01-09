@@ -24,6 +24,7 @@ import { useParams } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { firebaseStore } from "@/app/backend/firebase";
 import Image from "next/image";
+import YouTube from "react-youtube";
 
 function CourseDetailComp() {
   type Course = {
@@ -57,7 +58,27 @@ function CourseDetailComp() {
   const match = regex.exec(couresDetail?.video_url as string);
   const videoID = match ? match[0] : null;
 
-  const numberOfRating = 5;
+  const onPlayerReady = (event: any) => {
+    if (localStorage.getItem(videoID as string)) {
+      event.target.seekTo(localStorage.getItem(videoID as string));
+    }
+    const seconds = event.target.getDuration();
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+
+    // formated seconds
+    const formated_duration = `${hours.toString().padStart(2, "0")}:${minutes
+      .toString()
+      .padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
+  };
+
+  const onPlayerStateChange = (event: any) => {
+    if (event.data == 0) {
+    }
+    localStorage.setItem(videoID as string, event.target.getCurrentTime());
+  };
+
   return (
     <>
       <Header
@@ -97,18 +118,13 @@ function CourseDetailComp() {
         {/* title */}
         <h1 className="pb-5 text-4xl font-bold">{couresDetail?.title}</h1>
 
-        {/* thumbnail */}
-        <div className="w-full aspect-video" data-aos="fade-up">
-          <Image
-            src={`https://i.ytimg.com/vi/${videoID}/maxresdefault.jpg`}
-            alt="html css thumbnail"
-            className="rounded-md"
-            width={0}
-            height={0}
-            sizes="100vw"
-            style={{ width: "100%", height: "100%" }}
-          />
-        </div>
+        {/* video */}
+
+        <YouTube
+          videoId={videoID as string}
+          onReady={onPlayerReady}
+          onStateChange={onPlayerStateChange}
+        />
 
         {/* title */}
         <h2 className="pb-5 text-2xl font-semibold" data-aos="fade-up">
