@@ -153,14 +153,6 @@ function CourseDetailComp() {
           and the art of programming.
         </p> */}
 
-        {/* start learning button */}
-        <a href={`/learn/${videoID}`}>
-          <Button
-            title="Start Learning"
-            icon={<MdPlayArrow size={25} />}
-            className="flex items-center w-fit gap-x-2"
-          />
-        </a>
         <div className="flex justify-between w-full p-5 px-10 bg-gray-300 justify-self-center">
           <b
             style={{ color: styles.light.cta }}
