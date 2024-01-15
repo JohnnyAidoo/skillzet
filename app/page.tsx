@@ -46,7 +46,7 @@ function App() {
           </>
         }
       />
-      <main className=" bg-[url('../public/static/ssshape.svg')] bg-no-repeat bg-left-bottom bg-contain bg-blend-lighten">
+      <main className=" absolute bg-[url('../public/static/ssshape.svg')] bg-no-repeat bg-left-bottom bg-contain bg-blend-lighten">
         <section
           id="hero"
           className="flex justify-center items-center h-full px-16 "
@@ -130,7 +130,6 @@ function App() {
               </p>
               <Link href={"/auth/login"}>
                 <Button
-                  data-aos="zoom-in"
                   style={{ backgroundColor: styles.light.cta }}
                   size="lg"
                   className="px-28"

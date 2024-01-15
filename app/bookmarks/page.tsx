@@ -1,9 +1,4 @@
-import {
-  Avatar,
-  CardTemplate,
-  IconButton,
-  Input,
-} from "@/public/components/clientComp";
+import { Avatar, Input } from "@/public/components/clientComp";
 import Header from "@/public/components/header";
 import SideBar from "@/public/components/sideBar";
 import { MdOutlineSearch, MdOutlineNotifications } from "react-icons/md";
@@ -30,7 +25,7 @@ function BookmarkPage() {
               <Avatar
                 className="mx-2"
                 src="https://docs.material-tailwind.com/img/face-2.jpg"
-                alt="l"
+                alt="avatar"
               />
             </div>
           </>
@@ -39,10 +34,10 @@ function BookmarkPage() {
       <SideBar />
       <main
         style={{ width: "79%" }}
-        className="float-right flex flex-col bottom-0 px-10"
+        className="bottom-0 flex flex-col float-right px-10"
       >
         <div className="w-full"> </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-2 gap-y-10"></div>
+        <div className="grid w-full grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-y-10"></div>
       </main>
     </>
   );
