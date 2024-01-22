@@ -11,6 +11,7 @@ function HomePage() {
   const router = useRouter();
 
   const [courseList, setCourses] = useState<Course[]>();
+  const [tempInformation, setTempInformationourses] = useState<TempInfo[]>();
 
   type Course = {
     id: string;
@@ -22,6 +23,11 @@ function HomePage() {
     video_url: string;
     duration: string;
     course_category: string;
+  };
+  type TempInfo = {
+    id: string;
+    uid: string;
+    vidoe: string;
   };
 
   useEffect(() => {
@@ -41,6 +47,16 @@ function HomePage() {
         console.log(doc.id, "=>", doc.data());
       });
     };
+    const get_currently_learning = async () => {
+      const collection_ref = collection(firebaseStore, "TempInfo");
+      const doc_ref = await getDocs(collection_ref);
+
+      let tempInfo: TempInfo[] = [];
+
+      const courseData = doc_ref.forEach((doc) => {
+        tempInfo.push({ ...(doc.data() as TempInfo) });
+      });
+    };
     get_data();
   }, []);
 
@@ -55,13 +71,15 @@ function HomePage() {
       <SideBar />
       <main
         style={{ width: "79%" }}
-        className="float-right flex flex-col bottom-0 px-10"
+        className="bottom-0 flex flex-col float-right px-10"
       >
         <div
-          className="w-full rounded-lg bg-gray-400 mb-10"
+          className="w-full mb-10 bg-gray-400 rounded-lg"
           style={{ minHeight: "30vh" }}
-        ></div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-2 gap-y-10">
+        >
+          {/* TODO : render current learning course and progress */}
+        </div>
+        <div className="grid w-full grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-y-10">
           {courseList?.map((item) => (
             <CardTemplate
               key={item.id}

@@ -21,10 +21,11 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useParams } from "next/navigation";
-import { doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { firebaseStore } from "@/app/backend/firebase";
 import Image from "next/image";
 import YouTube from "react-youtube";
+import { getAuth } from "firebase/auth";
 
 function CourseDetailComp() {
   type Course = {
@@ -74,9 +75,15 @@ function CourseDetailComp() {
   };
 
   const onPlayerStateChange = (event: any) => {
-    if (event.data == 0) {
+    if (event.data == 0 || event.data == 1) {
+      const store = firebaseStore;
+      setDoc(doc(firebaseStore, "TempInfo", "current"), {
+        video: videoID,
+        uid: getAuth().currentUser?.uid,
+      });
     }
     localStorage.setItem(videoID as string, event.target.getCurrentTime());
+    localStorage.setItem("CURRENTLY_LEARNING", videoID as string);
   };
 
   return (
