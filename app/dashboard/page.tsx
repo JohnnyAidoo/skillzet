@@ -83,6 +83,7 @@ function HomePage() {
           {courseList?.map((item) => (
             <CardTemplate
               key={item.id}
+              id={item.id}
               href={`/course/${item.id}`}
               title={item.title}
               category={item.course_category}

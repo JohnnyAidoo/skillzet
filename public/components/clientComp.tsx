@@ -39,15 +39,24 @@ import {
 } from "react-icons/md";
 import {
   createUserWithEmailAndPassword,
+  getAuth,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { firebaseAuth } from "@/app/backend/firebase";
+import { firebaseAuth, firebaseStore } from "@/app/backend/firebase";
 import { colors } from "@material-tailwind/react/types/generic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import {
+  addDoc,
+  collection,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 
 //
 //
@@ -138,6 +147,7 @@ export function Avatar(props: {
 }
 export function CardTemplate(props: {
   onClick?: MouseEventHandler<HTMLDivElement> | undefined;
+  id: string;
   href: string;
   video_url: string;
   title: string;
@@ -153,6 +163,34 @@ export function CardTemplate(props: {
   const regex = /(?<=\?v=)(.*?)(?=&|$)/;
   const match = regex.exec(props.video_url);
   const videoID = match ? match[0] : null;
+
+  const handleBookmark = async () => {
+    //TODO: Check if course is bookmarked. If not add to book mark else remove from bookmark
+    try {
+      const bookmarkRef = collection(firebaseStore, "Bookmarks");
+      const q = query(
+        bookmarkRef,
+        where("uid", "==", getAuth().currentUser?.uid),
+        where("courseID", "==", props.id)
+      );
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.empty) {
+        console.log("not marked");
+        addDoc(bookmarkRef, {
+          uid: getAuth().currentUser?.uid,
+          courseID: props.id,
+        }).then(() => {
+          console.log("now marked");
+        });
+      } else {
+        console.log("marked");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
+    //TODO: if bookmarked , set color to blue else set to black
+  };
 
   return (
     <Card data-aos="fade-up " onClick={props.onClick} className="h-fit">
@@ -198,8 +236,8 @@ export function CardTemplate(props: {
 
       {/* Buttons */}
       <CardFooter className="flex items-center justify-between w-full ">
-        <MTIconButton color="white">
-          <MdBookmark size={35} />
+        <MTIconButton color="white" className="shadow-none ">
+          <MdBookmark onClick={handleBookmark} size={35} />
         </MTIconButton>
         <Link href={`${props.href}`} className="w-3/4">
           <MTButton
