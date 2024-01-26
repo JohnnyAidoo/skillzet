@@ -1,9 +1,14 @@
+"use client";
 import { Avatar, Input } from "@/public/components/clientComp";
 import Header from "@/public/components/header";
 import SideBar from "@/public/components/sideBar";
+import { useEffect, useState } from "react";
 import { MdOutlineSearch, MdOutlineNotifications } from "react-icons/md";
 
 function BookmarkPage() {
+  const [bookmarks, setBookmarks] = useState();
+
+  useEffect(() => {});
   return (
     <>
       <Header

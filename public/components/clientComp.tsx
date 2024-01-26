@@ -27,6 +27,7 @@ import {
   HTMLInputTypeAttribute,
   MouseEventHandler,
   ReactNode,
+  useState,
 } from "react";
 import { size } from "@material-tailwind/react/types/components/avatar";
 import {
@@ -52,6 +53,8 @@ import "aos/dist/aos.css";
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   getDoc,
   getDocs,
   query,
@@ -157,15 +160,34 @@ export function CardTemplate(props: {
   category: string;
   rating: number;
 }) {
+  const [bookmarked, setBookmarked] = useState<boolean>();
+  const [alert, setAlert] = useState(<></>);
   useEffect(() => {
     AOS.init();
   });
+
+  //check for bookmark and set icon color
+  const checkIfBookmarked = async () => {
+    const bookmarkRef = collection(firebaseStore, "Bookmarks");
+    const q = query(
+      bookmarkRef,
+      where("uid", "==", getAuth().currentUser?.uid),
+      where("courseID", "==", props.id)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.empty ? setBookmarked(false) : setBookmarked(true);
+  };
+
+  //use effect to run check bookmark function
+  useEffect(() => {
+    checkIfBookmarked();
+  }, []);
+
   const regex = /(?<=\?v=)(.*?)(?=&|$)/;
   const match = regex.exec(props.video_url);
   const videoID = match ? match[0] : null;
 
   const handleBookmark = async () => {
-    //TODO: Check if course is bookmarked. If not add to book mark else remove from bookmark
     try {
       const bookmarkRef = collection(firebaseStore, "Bookmarks");
       const q = query(
@@ -181,74 +203,97 @@ export function CardTemplate(props: {
           courseID: props.id,
         }).then(() => {
           console.log("now marked");
+          checkIfBookmarked();
+          setAlert(
+            <MTAlert
+              className="fixed top-0 z-50"
+              variant="filled"
+              color="green"
+            >
+              Item Added to Bookmarks
+            </MTAlert>
+          );
         });
       } else {
-        console.log("marked");
+        querySnapshot.forEach((item) => {
+          deleteDoc(doc(firebaseStore, "Bookmarks", item.id));
+          checkIfBookmarked();
+          setAlert(
+            <MTAlert className="fixed top-0 z-50" variant="filled" color="red">
+              Item Removed to Bookmarks
+            </MTAlert>
+          );
+        });
       }
     } catch (err) {
       console.log(err);
     }
-
-    //TODO: if bookmarked , set color to blue else set to black
   };
 
   return (
-    <Card data-aos="fade-up " onClick={props.onClick} className="h-fit">
-      <CardHeader>
-        <div className="absolute bottom-0 z-20 p-2 mb-5 ml-3 text-black bg-white w-fit rounded-xl">
-          <p>{props.category}</p>
-        </div>
-        <img
-          src={`https://i.ytimg.com/vi/${videoID}/maxresdefault.jpg`}
-          alt="course thumbnail"
-          className="h-full -z-10"
-        />
-      </CardHeader>
-
-      {/* Title */}
-      <CardBody>
-        <Typography variant="h5">{props.title}</Typography>
-      </CardBody>
-
-      {/* descriptions */}
-      <CardBody
-        className="flex items-center justify-between w-full p-0 my-0 h-fit"
-        style={{ paddingInline: "5%" }}
-      >
-        <div className="flex flex-col ">
-          {/* owner */}
-          <Typography variant="small">{props.owner}</Typography>
-
-          {/* rating */}
-          <div className="flex">
-            {Array.from({ length: props.rating }, (_, index) => (
-              <div>
-                <MdStar key={index} size={25} color={styles.light.cta} />
-              </div>
-            ))}
+    <>
+      {alert}
+      <Card data-aos="fade-up " onClick={props.onClick} className="h-fit">
+        <CardHeader>
+          <div className="absolute bottom-0 z-20 p-2 mb-5 ml-3 text-black bg-white w-fit rounded-xl">
+            <p>{props.category}</p>
           </div>
-        </div>
-        <div className="flex flex-col ">
-          <Typography variant="small">Duration : {props.duration}</Typography>
-          <Typography variant="small">{props.type}</Typography>
-        </div>
-      </CardBody>
+          <img
+            src={`https://i.ytimg.com/vi/${videoID}/maxresdefault.jpg`}
+            alt="course thumbnail"
+            className="h-full -z-10"
+          />
+        </CardHeader>
 
-      {/* Buttons */}
-      <CardFooter className="flex items-center justify-between w-full ">
-        <MTIconButton color="white" className="shadow-none ">
-          <MdBookmark onClick={handleBookmark} size={35} />
-        </MTIconButton>
-        <Link href={`${props.href}`} className="w-3/4">
-          <MTButton
-            className="w-full"
-            style={{ backgroundColor: styles.light.cta }}
-          >
-            Start Learning
-          </MTButton>
-        </Link>
-      </CardFooter>
-    </Card>
+        {/* Title */}
+        <CardBody>
+          <Typography variant="h5">{props.title}</Typography>
+        </CardBody>
+
+        {/* descriptions */}
+        <CardBody
+          className="flex items-center justify-between w-full p-0 my-0 h-fit"
+          style={{ paddingInline: "5%" }}
+        >
+          <div className="flex flex-col ">
+            {/* owner */}
+            <Typography variant="small">{props.owner}</Typography>
+
+            {/* rating */}
+            <div className="flex">
+              {Array.from({ length: props.rating }, (_, index) => (
+                <div>
+                  <MdStar key={index} size={25} color={styles.light.cta} />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-col ">
+            <Typography variant="small">Duration : {props.duration}</Typography>
+            <Typography variant="small">{props.type}</Typography>
+          </div>
+        </CardBody>
+
+        {/* Buttons */}
+        <CardFooter className="flex items-center justify-between w-full ">
+          <MTIconButton color="white" className="shadow-none ">
+            <MdBookmark
+              onClick={handleBookmark}
+              size={35}
+              color={bookmarked ? styles.light.cta : "black"}
+            />
+          </MTIconButton>
+          <Link href={`${props.href}`} className="w-3/4">
+            <MTButton
+              className="w-full"
+              style={{ backgroundColor: styles.light.cta }}
+            >
+              Start Learning
+            </MTButton>
+          </Link>
+        </CardFooter>
+      </Card>
+    </>
   );
 }
 
