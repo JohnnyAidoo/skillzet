@@ -48,7 +48,7 @@ function RichHeader() {
             />
           </div>
           <div className="flex items-center justify-between ">
-            <NotificationPopUP />
+            {/* <NotificationPopUP /> */}
             <Popover placement="bottom">
               <PopoverHandler>
                 <Button size="sm" color="white" className="shadow-none">

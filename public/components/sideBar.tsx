@@ -8,7 +8,6 @@ import {
 } from "react-icons/md";
 import {
   Card,
-  Typography,
   List,
   ListItem,
   ListItemPrefix,
@@ -27,20 +26,20 @@ function SideBar() {
   return (
     <aside
       style={{ backgroundColor: styles.light.primaryDark, width: "20%" }}
-      className="float-left fixed h-screen border-black outline-8 outline-black border-solid"
+      className="fixed float-left h-screen border-black border-solid outline-8 outline-black"
     >
       <Card
         // style={{ width: "99%" }}
         shadow
-        className=" h-full w-full p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-black border-r-4"
+        className="w-full h-full p-4 border-r-4 border-black border-solid shadow-xl shadow-blue-gray-900/5"
       >
-        <div className="mb-2 p-4"></div>
+        <div className="p-4 mb-2"></div>
         <List>
           {/* dashboard link */}
           <Link href={"/dashboard"}>
             <ListItem selected={path == "/dashboard"}>
               <ListItemPrefix>
-                <MdOutlineDashboard className="h-5 w-5" />
+                <MdOutlineDashboard className="w-5 h-5" />
               </ListItemPrefix>
               Dashboard
             </ListItem>
@@ -50,15 +49,15 @@ function SideBar() {
           <Link href={"/bookmarks"}>
             <ListItem selected={path == "/bookmarks"}>
               <ListItemPrefix>
-                <MdOutlineBookmarks className="h-5 w-5" />
+                <MdOutlineBookmarks className="w-5 h-5" />
               </ListItemPrefix>
               Bookmarks
             </ListItem>
           </Link>
-          <Link href={"/trending"}>
+          {/* <Link href={"/trending"}>
             <ListItem selected={path == "/trending"}>
               <ListItemPrefix>
-                <MdOutlineLocalFireDepartment className="h-5 w-5" />
+                <MdOutlineLocalFireDepartment className="w-5 h-5" />
               </ListItemPrefix>
               Trending Topics
               <ListItemSuffix>
@@ -71,16 +70,16 @@ function SideBar() {
                 />
               </ListItemSuffix>
             </ListItem>
-          </Link>
+          </Link> */}
           <hr className="my-2 border-blue-gray-50" />
-          <Link href={"/settings"}>
+          {/* <Link href={"/settings"}>
             <ListItem selected={path == "/settings"}>
               <ListItemPrefix>
-                <MdOutlineSettings className="h-5 w-5" />
+                <MdOutlineSettings className="w-5 h-5" />
               </ListItemPrefix>
               Settings
             </ListItem>
-          </Link>
+          </Link> */}
         </List>
       </Card>
     </aside>

@@ -43,9 +43,9 @@ function HomePage() {
 
       setCourses(courses);
 
-      doc_ref.forEach((doc) => {
-        console.log(doc.id, "=>", doc.data());
-      });
+      // doc_ref.forEach((doc) => {
+      //   console.log(doc.id, "=>", doc.data());
+      // });
     };
     const get_currently_learning = async () => {
       const collection_ref = collection(firebaseStore, "TempInfo");

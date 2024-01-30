@@ -229,6 +229,13 @@ export function CardTemplate(props: {
       console.log(err);
     }
   };
+  useEffect(()=>{
+    if (alert != <></>){
+      setTimeout(() => {
+        setAlert(<></>);
+      }, 3000);
+    }
+  })
 
   return (
     <>
