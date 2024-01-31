@@ -1,5 +1,5 @@
 "use client";
-import { Avatar, Input } from "@/public/components/clientComp";
+import { Avatar, CardTemplate, Input } from "@/public/components/clientComp";
 import Header from "@/public/components/header";
 import SideBar from "@/public/components/sideBar";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -9,7 +9,7 @@ import { firebaseStore } from "../backend/firebase";
 import { getAuth } from "firebase/auth";
 
 function BookmarkPage() {
-  const [bookmarks, setBookmarks] = useState();
+  const [bookmarks, setBookmarks] = useState<Course[]>();
   
   type Links={
     id:string;
@@ -52,13 +52,13 @@ function BookmarkPage() {
         courses.push({ id: doc.id,...doc.data() } as Course);
       });
 
-      console.log(courses);
+      setBookmarks(courses);
     
       
     };
     
     get_data();
-  }, []);
+  }, [bookmarks]);
   return (
     <>
       <Header
@@ -92,7 +92,22 @@ function BookmarkPage() {
         className="bottom-0 flex flex-col float-right px-10"
       >
         <div className="w-full"> </div>
-        <div className="grid w-full grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-y-10"></div>
+        <div className="grid w-full grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-y-10">
+          {bookmarks?.map((item) =>(
+           <CardTemplate
+           key={item.id}
+           id={item.id}
+           href={`/course/${item.id}`}
+           title={item.title}
+           category={item.course_category}
+           duration={item.duration}
+           owner={item.owner}
+           type={item.course_type}
+           video_url={item.video_url}
+           rating={item.rating}
+         />
+          ))}
+        </div>
       </main>
     </>
   );
