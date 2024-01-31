@@ -56,8 +56,8 @@ function SignUpPage() {
   return (
     <>
       {alert}
-      <section className="w-full h-screen flex justify-around  to-blue-800 ">
-        <div className="w-1/2 flex flex-col justify-center rounded-lg bg-gradient-to-r to-white from-indigo-500">
+      <section className="flex justify-around w-full h-screen to-blue-800 ">
+        <div className="flex flex-col justify-center w-1/2 rounded-lg bg-gradient-to-r to-white from-indigo-500">
           <Image
             data-aos="fade-left"
             src={loginSvg}
@@ -68,16 +68,16 @@ function SignUpPage() {
         <div
           data-aos="zoom-in"
           style={{ backgroundColor: styles.light.primaryLight }}
-          className="w-1/2 h-full flex flex-col justify-center items-center px-16"
+          className="flex flex-col items-center justify-center w-1/2 h-full px-16"
         >
-          <h1 className="font-bold text-5xl mb-5">
+          <h1 className="mb-5 text-5xl font-bold">
             skill<span>Z</span>et
           </h1>
-          <h1 className="font-bold text-5xl mb-5">
+          <h1 className="mb-5 text-5xl font-bold">
             Create An Account For Free
           </h1>
           <p></p>
-          <form className="h-1/3  flex flex-col justify-around items-center">
+          <form className="flex flex-col items-center justify-around h-1/3">
             <div className="flex justify-between">
               <Input
                 label="First Name"
@@ -109,9 +109,9 @@ function SignUpPage() {
               type="password"
             />
             <Button title="SIGN UP" className="w-2/3" onClick={handleSignUp} />
-            <Link href={""} style={{ color: styles.light.cta }}>
+            {/* <Link href={""} style={{ color: styles.light.cta }}>
               forgot password
-            </Link>
+            </Link> */}
           </form>
           <p>
             Already have an Account ?

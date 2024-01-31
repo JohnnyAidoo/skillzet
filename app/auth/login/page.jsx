@@ -56,18 +56,18 @@ function LoginPage() {
   return (
     <>
       {alert}
-      <section className="w-full h-screen flex justify-around  to-blue-800 ">
+      <section className="flex justify-around w-full h-screen to-blue-800 ">
         <div
           data-aos="zoom-in"
           style={{ backgroundColor: styles.light.primaryLight }}
-          className="w-1/2 h-full flex flex-col justify-center items-center px-16"
+          className="flex flex-col items-center justify-center w-1/2 h-full px-16"
         >
-          <h1 className="font-bold text-5xl mb-5">
+          <h1 className="mb-5 text-5xl font-bold">
             skill<span>Z</span>et
           </h1>
-          <h1 className="font-bold text-5xl mb-5">Welcome Back</h1>
+          <h1 className="mb-5 text-5xl font-bold">Welcome Back</h1>
           <p></p>
-          <form className="h-1/4 w-3/4 flex flex-col justify-around items-center">
+          <form className="flex flex-col items-center justify-around w-3/4 h-1/4">
             <Input
               onChange={handleInputChange}
               label="Email"
@@ -83,9 +83,9 @@ function LoginPage() {
               value={formData.password}
             />
             <Button title="LOG IN" className="w-full" onClick={handleSignIn} />
-            <Link href={""} style={{ color: styles.light.cta }}>
+            {/* <Link href={""} style={{ color: styles.light.cta }}>
               forgot password
-            </Link>
+            </Link> */}
           </form>
           <p>
             Do not have an Account ?
@@ -98,7 +98,7 @@ function LoginPage() {
             </Link>
           </p>
         </div>
-        <div className="w-1/2 flex flex-col justify-center rounded-lg bg-gradient-to-r from-white to-indigo-500">
+        <div className="flex flex-col justify-center w-1/2 rounded-lg bg-gradient-to-r from-white to-indigo-500">
           <Image
             data-aos="fade-right"
             src={loginSvg}

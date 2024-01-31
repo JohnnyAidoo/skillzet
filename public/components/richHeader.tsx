@@ -30,7 +30,7 @@ function RichHeader() {
     signOut(firebaseAuth)
       .then(() => {
         localStorage.clear();
-        router.push("/login");
+        router.push("/auth/login");
       })
       .catch((err) => {
         console.log(err);
@@ -41,11 +41,11 @@ function RichHeader() {
       sub={
         <>
           <div className="w-1/3 mx-10">
-            <Input
+            {/* <Input
               label="search"
               type="search"
               icon={<MdOutlineSearch size={30} />}
-            />
+            /> */}
           </div>
           <div className="flex items-center justify-between ">
             {/* <NotificationPopUP /> */}
