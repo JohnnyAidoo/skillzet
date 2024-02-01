@@ -22,3 +22,13 @@ aside {
 section {
   float: right;
 }
+main{
+  width: 79%;
+}
+
+@media screen and (max-width: 720px) {
+  main{
+    width: 100%;
+  }
+}
+  

@@ -49,10 +49,10 @@ function App() {
       <main className=" absolute bg-[url('../public/static/ssshape.svg')] bg-no-repeat bg-left-bottom bg-contain bg-blend-lighten">
         <section
           id="hero"
-          className="flex justify-center items-center h-full px-16 "
+          className="flex items-center justify-center h-full px-16 "
         >
           <div data-aos="fade-right" className="w-2/3 ">
-            <h2 className="text-7xl font-bold mb-10 ">
+            <h2 className="mb-10 font-bold text-7xl ">
               <span>Unlock</span> Your Potential. <span>Learn</span>,
               <span>Grow</span>, <span>Succeed</span>.
             </h2>
@@ -63,7 +63,7 @@ function App() {
               world of online learning and personal development.
             </p>
           </div>
-          <div data-aos="fade-left">
+          <div data-aos="fade-left" className="hidden md:block sm">
             <Image src={heroImg} alt={"hero image"} />
           </div>
         </section>
@@ -73,11 +73,11 @@ function App() {
           className="
         mb-32 w-full bg-[url('../public/static/ssshape2.svg')]  bg-no-repeat bg-auto bg-right-bottom bg-blend-lighten"
         >
-          <section className="flex justify-start mb-10 px-16  ">
+          <section className="flex justify-start px-16 mb-10 ">
             <div className="w-2/3">
               <h2
                 data-aos="fade-right"
-                className="text-7xl font-bold mb-10 w-full"
+                className="w-full mb-10 font-bold text-7xl"
               >
                 🚀 The Future of Learning is <span>Here</span>
               </h2>
@@ -94,18 +94,18 @@ function App() {
           </section>
 
           {/*  */}
-          <section className="flex justify-end mb-10 px-16">
+          <section className="flex justify-end px-16 mb-10">
             <div className="w-2/3">
               <h2
                 data-aos="fade-left"
-                className="text-7xl font-bold mb-10 w-full text-end"
+                className="w-full mb-10 font-bold text-7xl text-end"
               >
                 🌎 Join a Global Learning <span>Community</span>
               </h2>
-              <div className="flex justify-end self-end">
+              <div className="flex self-end justify-end">
                 <p
                   data-aos="fade-up"
-                  className="w-1/2 font-semibold justify-end text-end"
+                  className="justify-end w-1/2 font-semibold text-end"
                 >
                   At <span className="font-bold">skillZet</span>, we foster a
                   global community of learners. Share your knowledge, learn from
@@ -116,13 +116,13 @@ function App() {
           </section>
 
           {/*  */}
-          <section className="flex justify-center mb-10 w-full">
-            <div className=" w-3/4 flex flex-col items-center justify-center ">
-              <h2 className="text-7xl font-bold mb-10 ">Get Started Today</h2>
+          <section className="flex justify-center w-full mb-10">
+            <div className="flex flex-col items-center justify-center w-3/4 ">
+              <h2 className="mb-10 font-bold text-7xl ">Get Started Today</h2>
 
               <p
                 data-aos="fade-up"
-                className="w-2/3 text-center font-semibold mb-5"
+                className="w-2/3 mb-5 font-semibold text-center"
               >
                 Ready to embark on your learning journey? Take the first step
                 and explore our diverse course offerings. Whether you are a

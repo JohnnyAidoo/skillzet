@@ -70,7 +70,7 @@ function HomePage() {
       <RichHeader />
       <SideBar />
       <main
-        style={{ width: "79%" }}
+       
         className="bottom-0 flex flex-col float-right px-10"
       >
         <div

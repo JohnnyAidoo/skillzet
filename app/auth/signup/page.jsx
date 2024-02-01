@@ -57,7 +57,7 @@ function SignUpPage() {
     <>
       {alert}
       <section className="flex justify-around w-full h-screen to-blue-800 ">
-        <div className="flex flex-col justify-center w-1/2 rounded-lg bg-gradient-to-r to-white from-indigo-500">
+      <div className="flex-col justify-center hidden w-1/2 rounded-lg lg:flex bg-gradient-to-l from-white to-indigo-500">
           <Image
             data-aos="fade-left"
             src={loginSvg}
@@ -68,7 +68,7 @@ function SignUpPage() {
         <div
           data-aos="zoom-in"
           style={{ backgroundColor: styles.light.primaryLight }}
-          className="flex flex-col items-center justify-center w-1/2 h-full px-16"
+          className="flex flex-col items-center justify-center w-full h-full px-16 lg:w-1/2"
         >
           <h1 className="mb-5 text-5xl font-bold">
             skill<span>Z</span>et

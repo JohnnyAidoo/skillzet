@@ -13,6 +13,7 @@ import {
   ListItemPrefix,
   ListItemSuffix,
   Chip,
+  Navbar,
 } from "@material-tailwind/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -24,9 +25,10 @@ function SideBar() {
   }, [path]);
 
   return (
+    <>
     <aside
       style={{ backgroundColor: styles.light.primaryDark, width: "20%" }}
-      className="fixed float-left h-screen border-black border-solid outline-8 outline-black"
+      className="hidden float-left h-screen border-black border-solid md:block md:fixed outline-8 outline-black"
     >
       <Card
         // style={{ width: "99%" }}
@@ -83,6 +85,14 @@ function SideBar() {
         </List>
       </Card>
     </aside>
+    
+    <Card style={{width:'100vw'}} className="fixed bottom-0 z-50 flex-row items-center justify-around hidden h-10 shadow-lg sm:flex" shadow >
+      <Link href={"/dashboard"}><MdOutlineDashboard className="w-5 h-5" />
+</Link>    
+      <Link href={"/bookarks"}>                <MdOutlineBookmarks className="w-5 h-5" />
+</Link>    
+    </Card>
+    </>
   );
 }
 

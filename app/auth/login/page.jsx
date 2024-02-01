@@ -56,18 +56,18 @@ function LoginPage() {
   return (
     <>
       {alert}
-      <section className="flex justify-around w-full h-screen to-blue-800 ">
-        <div
+      <section className="flex justify-around w-full h-screen lg:to-blue-800 from-white to-indigo-500">
+        <div 
           data-aos="zoom-in"
           style={{ backgroundColor: styles.light.primaryLight }}
-          className="flex flex-col items-center justify-center w-1/2 h-full px-16"
+          className="flex flex-col items-center justify-center w-full h-full px-16 lg:w-1/2"
         >
           <h1 className="mb-5 text-5xl font-bold">
             skill<span>Z</span>et
           </h1>
           <h1 className="mb-5 text-5xl font-bold">Welcome Back</h1>
           <p></p>
-          <form className="flex flex-col items-center justify-around w-3/4 h-1/4">
+          <form className="flex flex-col items-center justify-around w-3/4 h-1/4 from-white to-indigo-500">
             <Input
               onChange={handleInputChange}
               label="Email"
@@ -98,7 +98,7 @@ function LoginPage() {
             </Link>
           </p>
         </div>
-        <div className="flex flex-col justify-center w-1/2 rounded-lg bg-gradient-to-r from-white to-indigo-500">
+        <div className="flex-col justify-center hidden w-1/2 rounded-lg lg:flex bg-gradient-to-r from-white to-indigo-500">
           <Image
             data-aos="fade-right"
             src={loginSvg}
