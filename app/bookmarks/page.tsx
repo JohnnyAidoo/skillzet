@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { MdOutlineSearch, MdOutlineNotifications } from "react-icons/md";
 import { firebaseStore } from "../backend/firebase";
 import { getAuth } from "firebase/auth";
+import RichHeader from "@/public/components/richHeader";
 
 function BookmarkPage() {
   const [bookmarks, setBookmarks] = useState<Course[]>();
@@ -61,31 +62,7 @@ function BookmarkPage() {
   }, [bookmarks]);
   return (
     <>
-      <Header
-        sub={
-          <>
-            <div className="w-1/3 mx-10">
-              <Input
-                label="search"
-                type="search"
-                icon={<MdOutlineSearch size={30} />}
-              />
-            </div>
-            <div className="flex items-center justify-between ">
-              <MdOutlineNotifications
-                size={30}
-                className="mx-2 rounded-xl hover:bg-gray-400"
-              />
-
-              <Avatar
-                className="mx-2"
-                src="https://docs.material-tailwind.com/img/face-2.jpg"
-                alt="avatar"
-              />
-            </div>
-          </>
-        }
-      />
+     <RichHeader />
       <SideBar />
       <main
         style={{ width: "79%" }}

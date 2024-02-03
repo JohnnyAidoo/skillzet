@@ -11,6 +11,8 @@ import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Button,
+  Collapse,
+  Drawer,
   List,
   ListItem,
   ListItemPrefix,
@@ -19,12 +21,18 @@ import {
   PopoverHandler,
 } from "@material-tailwind/react";
 import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { MdOutlineSearch } from "react-icons/md";
+import { MdDoNotTouch, MdEqualizer, MdFormatAlignCenter, MdLineAxis, MdMultilineChart, MdMultipleStop, MdOutlineBookmarks, MdOutlineDashboard, MdOutlineSearch, MdVerticalAlignBottom } from "react-icons/md";
 
 function RichHeader() {
   const router = useRouter();
+  const [open,setopen] = useState(false);
+  const [path, sePath] = useState<string>();
+  useEffect(() => {
+    sePath(window.location.pathname);
+  }, [path]);
 
   const logout = () => {
     signOut(firebaseAuth)
@@ -70,7 +78,63 @@ function RichHeader() {
                 </List>
               </PopoverContent>
             </Popover>
+          <Button id="drawer"  onClick={()=>{setopen(!open)}} >{open ? <MdLineAxis />: <MdFormatAlignCenter />}</Button>
           </div>
+          <Drawer
+          open={open}
+          onClose={() => {
+            setopen(false);
+          }}
+          className="pt-10 pl-10 space-y-5 gap"
+        >
+          <List>
+          {/* dashboard link */}
+          <Link href={"/dashboard"}>
+            <ListItem selected={path == "/dashboard"}>
+              <ListItemPrefix>
+                <MdOutlineDashboard className="w-5 h-5" />
+              </ListItemPrefix>
+              Dashboard
+            </ListItem>
+          </Link>
+
+          {/* bookmarks link */}
+          <Link href={"/bookmarks"}>
+            <ListItem selected={path == "/bookmarks"}>
+              <ListItemPrefix>
+                <MdOutlineBookmarks className="w-5 h-5" />
+              </ListItemPrefix>
+              Bookmarks
+            </ListItem>
+          </Link>
+          {/* <Link href={"/trending"}>
+            <ListItem selected={path == "/trending"}>
+              <ListItemPrefix>
+                <MdOutlineLocalFireDepartment className="w-5 h-5" />
+              </ListItemPrefix>
+              Trending Topics
+              <ListItemSuffix>
+                <Chip
+                  value="14"
+                  size="sm"
+                  variant="ghost"
+                  color="blue-gray"
+                  className="rounded-full"
+                />
+              </ListItemSuffix>
+            </ListItem>
+          </Link> */}
+          <hr className="my-2 border-blue-gray-50" />
+          {/* <Link href={"/settings"}>
+            <ListItem selected={path == "/settings"}>
+              <ListItemPrefix>
+                <MdOutlineSettings className="w-5 h-5" />
+              </ListItemPrefix>
+              Settings
+            </ListItem>
+          </Link> */}
+        </List>
+        </Drawer>
         </>
       }
     />

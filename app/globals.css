@@ -25,10 +25,20 @@ section {
 main{
   width: 79%;
 }
+span{
+  color: #0011fa;
+  font-weight: 900;
+}
+#drawer{
+display: none;
+}
 
 @media screen and (max-width: 720px) {
   main{
     width: 100%;
+  }
+  #drawer{
+    display: block;
   }
 }
   

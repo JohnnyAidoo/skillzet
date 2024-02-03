@@ -57,7 +57,7 @@ function SignUpPage() {
     <>
       {alert}
       <section className="flex justify-around w-full h-screen to-blue-800 ">
-      <div className="flex-col justify-center hidden w-1/2 rounded-lg lg:flex bg-gradient-to-l from-white to-indigo-500">
+      <div className="flex-col justify-center hidden w-1/2 rounded-lg md:flex bg-gradient-to-l from-white to-indigo-500">
           <Image
             data-aos="fade-left"
             src={loginSvg}
@@ -68,16 +68,16 @@ function SignUpPage() {
         <div
           data-aos="zoom-in"
           style={{ backgroundColor: styles.light.primaryLight }}
-          className="flex flex-col items-center justify-center w-full h-full px-16 lg:w-1/2"
+          className="flex flex-col items-center justify-center w-1/2 h-full px-16 lg:w-1/2"
         >
           <h1 className="mb-5 text-5xl font-bold">
             skill<span>Z</span>et
           </h1>
-          <h1 className="mb-5 text-5xl font-bold">
+          <h1 className="mb-5 text-5xl font-bold text-center">
             Create An Account For Free
           </h1>
           <p></p>
-          <form className="flex flex-col items-center justify-around h-1/3">
+          <form onSubmit={handleSignUp} className="flex flex-col items-center justify-around h-1/3">
             <div className="flex justify-between">
               <Input
                 label="First Name"

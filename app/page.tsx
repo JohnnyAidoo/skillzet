@@ -46,25 +46,25 @@ function App() {
           </>
         }
       />
-      <main className=" absolute bg-[url('../public/static/ssshape.svg')] bg-no-repeat bg-left-bottom bg-contain bg-blend-lighten">
+      <main className="w-full absolute bg-[url('../public/static/ssshape.svg')] bg-no-repeat bg-left-bottom bg-contain bg-blend-lighten">
         <section
           id="hero"
-          className="flex items-center justify-center h-full px-16 "
+          className="flex items-center justify-between w-full h-full px-16"
         >
-          <div data-aos="fade-right" className="w-2/3 ">
-            <h2 className="mb-10 font-bold text-7xl ">
+          <div data-aos="fade-right" className="w-3/4 ">
+            <h2 className="mb-10 text-7xl mix-blend-multiply">
               <span>Unlock</span> Your Potential. <span>Learn</span>,
               <span>Grow</span>, <span>Succeed</span>.
             </h2>
-            <p className="w-4/5 font-bold">
+            <p className="w-4/5 font-bold mix-blend-normal">
               Are you ready to embark on a journey of knowledge and
               transformation? Welcome to
               <span className="font-bold"> skillZet</span>, your gateway to a
               world of online learning and personal development.
             </p>
           </div>
-          <div data-aos="fade-left" className="hidden md:block sm">
-            <Image src={heroImg} alt={"hero image"} />
+          <div data-aos="fade-left" className="absolute right-0 justify-end hidden w-2/5 h-full p-0 m-0 md:block -z-30">
+            <Image src={heroImg} alt={"hero image"} layout="fill" objectFit="contain" />
           </div>
         </section>
 
@@ -82,7 +82,7 @@ function App() {
                 🚀 The Future of Learning is <span>Here</span>
               </h2>
 
-              <p data-aos="fade-up" className="w-2/3 font-semibold">
+              <p data-aos="fade-up" className="font-semibold md:w-2/3">
                 At <span className="font-bold">skillZet</span> , we believe that
                 learning is a lifelong adventure. Our platform offers an
                 extensive range of courses designed to empower you with the
@@ -105,9 +105,9 @@ function App() {
               <div className="flex self-end justify-end">
                 <p
                   data-aos="fade-up"
-                  className="justify-end w-1/2 font-semibold text-end"
+                  className="justify-end w-full font-semibold md:w-1/2 text-end mix-blend-multiply"
                 >
-                  At <span className="font-bold">skillZet</span>, we foster a
+                  At <span className="w-full font-bold">skillZet</span>, we foster a
                   global community of learners. Share your knowledge, learn from
                   others, and grow together. Your journey begins now!
                 </p>
@@ -117,8 +117,8 @@ function App() {
 
           {/*  */}
           <section className="flex justify-center w-full mb-10">
-            <div className="flex flex-col items-center justify-center w-3/4 ">
-              <h2 className="mb-10 font-bold text-7xl ">Get Started Today</h2>
+            <div className="flex flex-col items-center justify-center w-full ">
+              <h2 className="mb-10 font-bold text-center text-7xl">Get Started Today</h2>
 
               <p
                 data-aos="fade-up"

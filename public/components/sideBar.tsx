@@ -86,14 +86,8 @@ function SideBar() {
       </Card>
     </aside>
     
-    <Card style={{width:'100vw'}} className="fixed bottom-0 z-50 flex-row items-center justify-around hidden h-10 shadow-lg sm:flex" shadow >
-      <Link href={"/dashboard"}><MdOutlineDashboard className="w-5 h-5" />
-</Link>    
-      <Link href={"/bookarks"}>                <MdOutlineBookmarks className="w-5 h-5" />
-</Link>    
-    </Card>
     </>
-  );
+  )
 }
 
 export default SideBar;

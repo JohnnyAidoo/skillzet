@@ -39,7 +39,6 @@ function LoginPage() {
       [name]: value,
     });
   };
-
   const handleSignIn = () => {
     setAlert(<></>);
     signIn(formData.email, formData.password)
@@ -60,14 +59,14 @@ function LoginPage() {
         <div 
           data-aos="zoom-in"
           style={{ backgroundColor: styles.light.primaryLight }}
-          className="flex flex-col items-center justify-center w-full h-full px-16 lg:w-1/2"
+          className="flex flex-col items-center justify-center h-full px-16 lg:w-1/2"
         >
           <h1 className="mb-5 text-5xl font-bold">
             skill<span>Z</span>et
           </h1>
-          <h1 className="mb-5 text-5xl font-bold">Welcome Back</h1>
+          <h1 className="w-full m-0 mb-5 text-5xl font-bold text-center">Welcome Back</h1>
           <p></p>
-          <form className="flex flex-col items-center justify-around w-3/4 h-1/4 from-white to-indigo-500">
+          <form onSubmit={handleSignIn} className="flex flex-col items-center justify-around w-3/4 h-1/4 from-white to-indigo-500">
             <Input
               onChange={handleInputChange}
               label="Email"
@@ -91,14 +90,14 @@ function LoginPage() {
             Do not have an Account ?
             <Link
               style={{ color: styles.light.cta }}
-              className="font-semibold"
+              className="font-bold"
               href="/auth/signup"
             >
               SIGN UP
             </Link>
           </p>
         </div>
-        <div className="flex-col justify-center hidden w-1/2 rounded-lg lg:flex bg-gradient-to-r from-white to-indigo-500">
+        <div className="flex-col justify-center hidden w-1/2 rounded-lg md:flex bg-gradient-to-r from-white to-indigo-500">
           <Image
             data-aos="fade-right"
             src={loginSvg}
