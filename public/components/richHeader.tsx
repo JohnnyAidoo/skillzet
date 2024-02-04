@@ -73,7 +73,7 @@ function RichHeader() {
                 <Button size="sm" color="white" className="shadow-none">
                   <Avatar
                     className="mx-2"
-                    src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Favatar&psig=AOvVaw0oeQVGxP3gTlq4raRzX_M-&ust=1707146463948000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCIjj3Kf-kYQDFQAAAAAdAAAAABAE"
+                    src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=s"
                     alt="l"
                   />
                 </Button>
