@@ -5,9 +5,7 @@
 /* span {
   color: #0011fa;
 } */
-*{
-  border: red solid 0.5px;
-}
+
 main section {
   min-height: 50vh;
 }
@@ -24,23 +22,22 @@ aside {
 section {
   float: right;
 }
-main{
+main {
   width: 79%;
 }
-span{
+span {
   color: #0011fa;
   font-weight: 900;
 }
-#drawer{
-display: none;
+#drawer {
+  display: none;
 }
 
 @media screen and (max-width: 720px) {
-  main{
+  main {
     width: 100%;
   }
-  #drawer{
+  #drawer {
     display: block;
   }
 }
-  
