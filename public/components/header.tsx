@@ -14,7 +14,7 @@ Header(props: { sub: ReactElement }) {
   return (
     <>
       <header
-        className="sticky top-0 z-50 flex items-center justify-between w-screen mb-5"
+        className="sticky top-0 z-50 flex items-center justify-between w-full mb-5"
         style={{ backgroundColor: styles.light.primaryLight }}
       >
         <Link href="/dashboard">

@@ -3,7 +3,7 @@ import Image from "next/image";
 import heroImg from "../public/heroImg.png";
 import Header from "../public/components/header";
 import Link from "next/link";
-import { Button, ButtonGroup } from "@material-tailwind/react";
+import { Button, ButtonGroup, Typography } from "@material-tailwind/react";
 import styles from "../public/static/theme";
 import { useEffect } from "react";
 import AOS from "aos";
@@ -46,16 +46,17 @@ function App() {
           </>
         }
       />
-      <main className="w-full absolute bg-[url('../public/static/ssshape.svg')] bg-no-repeat bg-left-bottom bg-contain bg-blend-lighten">
+      <main className="overflow-x-clip w-full absolute bg-[url('../public/static/ssshape.svg')] bg-no-repeat bg-left-bottom bg-contain bg-blend-lighten">
         <section
           id="hero"
-          className="flex items-center justify-between w-full h-full px-16"
+          className="flex items-center justify-between h-full "
         >
-          <div data-aos="fade-right" className="w-3/4 ">
-            <h2 className="mb-10 text-7xl mix-blend-multiply">
+          <div data-aos="fade-right" className="px-2 mb-2 md:w-2/4">
+            <Typography variant="h1">
               <span>Unlock</span> Your Potential. <span>Learn</span>,
               <span>Grow</span>, <span>Succeed</span>.
-            </h2>
+            </Typography>
+
             <p className="w-4/5 font-bold mix-blend-normal">
               Are you ready to embark on a journey of knowledge and
               transformation? Welcome to
@@ -63,8 +64,16 @@ function App() {
               world of online learning and personal development.
             </p>
           </div>
-          <div data-aos="fade-left" className="absolute right-0 justify-end hidden w-2/5 h-full p-0 m-0 md:block -z-30">
-            <Image src={heroImg} alt={"hero image"} layout="fill" objectFit="contain" />
+          <div
+            data-aos="fade-left"
+            className="absolute justify-end hidden w-2/5 h-1/4 right-10 md:block -z-30"
+          >
+            <Image
+              src={heroImg}
+              alt={"hero image"}
+              layout="fill"
+              objectFit="contain"
+            />
           </div>
         </section>
 
@@ -73,14 +82,11 @@ function App() {
           className="
         mb-32 w-full bg-[url('../public/static/ssshape2.svg')]  bg-no-repeat bg-auto bg-right-bottom bg-blend-lighten"
         >
-          <section className="flex justify-start px-16 mb-10 ">
-            <div className="w-2/3">
-              <h2
-                data-aos="fade-right"
-                className="w-full mb-10 font-bold text-7xl"
-              >
+          <section className="flex justify-start px-2 mb-10 ">
+            <div className="md:w-1/2">
+              <Typography variant="h1" data-aos="fade-right" className="mb-2">
                 🚀 The Future of Learning is <span>Here</span>
-              </h2>
+              </Typography>
 
               <p data-aos="fade-up" className="font-semibold md:w-2/3">
                 At <span className="font-bold">skillZet</span> , we believe that
@@ -94,22 +100,23 @@ function App() {
           </section>
 
           {/*  */}
-          <section className="flex justify-end px-16 mb-10">
-            <div className="w-2/3">
-              <h2
+          <section className="flex justify-end px-2 mb-10">
+            <div className="w-full md:w-2/3">
+              <Typography
+                variant="h1"
                 data-aos="fade-left"
-                className="w-full mb-10 font-bold text-7xl text-end"
+                className="w-full mb-10 text-right"
               >
                 🌎 Join a Global Learning <span>Community</span>
-              </h2>
+              </Typography>
               <div className="flex self-end justify-end">
                 <p
                   data-aos="fade-up"
                   className="justify-end w-full font-semibold md:w-1/2 text-end mix-blend-multiply"
                 >
-                  At <span className="w-full font-bold">skillZet</span>, we foster a
-                  global community of learners. Share your knowledge, learn from
-                  others, and grow together. Your journey begins now!
+                  At <span className="w-full font-bold">skillZet</span>, we
+                  foster a global community of learners. Share your knowledge,
+                  learn from others, and grow together. Your journey begins now!
                 </p>
               </div>
             </div>
@@ -118,11 +125,13 @@ function App() {
           {/*  */}
           <section className="flex justify-center w-full mb-10">
             <div className="flex flex-col items-center justify-center w-full ">
-              <h2 className="mb-10 font-bold text-center text-7xl">Get Started Today</h2>
+              <Typography variant="h1" className="mb-2 text-center">
+                Get Started Today
+              </Typography>
 
               <p
                 data-aos="fade-up"
-                className="w-2/3 mb-5 font-semibold text-center"
+                className="px-5 mb-5 font-semibold text-center md:w-2/3"
               >
                 Ready to embark on your learning journey? Take the first step
                 and explore our diverse course offerings. Whether you are a

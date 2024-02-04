@@ -5,7 +5,9 @@
 /* span {
   color: #0011fa;
 } */
-
+*{
+  border: red solid 0.5px;
+}
 main section {
   min-height: 50vh;
 }
