@@ -24,11 +24,22 @@ import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { MdDoNotTouch, MdEqualizer, MdFormatAlignCenter, MdLineAxis, MdMultilineChart, MdMultipleStop, MdOutlineBookmarks, MdOutlineDashboard, MdOutlineSearch, MdVerticalAlignBottom } from "react-icons/md";
+import {
+  MdDoNotTouch,
+  MdEqualizer,
+  MdFormatAlignCenter,
+  MdLineAxis,
+  MdMultilineChart,
+  MdMultipleStop,
+  MdOutlineBookmarks,
+  MdOutlineDashboard,
+  MdOutlineSearch,
+  MdVerticalAlignBottom,
+} from "react-icons/md";
 
 function RichHeader() {
   const router = useRouter();
-  const [open,setopen] = useState(false);
+  const [open, setopen] = useState(false);
   const [path, sePath] = useState<string>();
   useEffect(() => {
     sePath(window.location.pathname);
@@ -62,7 +73,7 @@ function RichHeader() {
                 <Button size="sm" color="white" className="shadow-none">
                   <Avatar
                     className="mx-2"
-                    src="https://docs.material-tailwind.com/img/face-2.jpg"
+                    src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Favatar&psig=AOvVaw0oeQVGxP3gTlq4raRzX_M-&ust=1707146463948000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCIjj3Kf-kYQDFQAAAAAdAAAAABAE"
                     alt="l"
                   />
                 </Button>
@@ -78,36 +89,43 @@ function RichHeader() {
                 </List>
               </PopoverContent>
             </Popover>
-          <Button id="drawer"  onClick={()=>{setopen(!open)}} >{open ? <MdLineAxis />: <MdFormatAlignCenter />}</Button>
+            <Button
+              id="drawer"
+              onClick={() => {
+                setopen(!open);
+              }}
+            >
+              {open ? <MdLineAxis /> : <MdFormatAlignCenter />}
+            </Button>
           </div>
           <Drawer
-          open={open}
-          onClose={() => {
-            setopen(false);
-          }}
-          className="pt-10 pl-10 space-y-5 gap"
-        >
-          <List>
-          {/* dashboard link */}
-          <Link href={"/dashboard"}>
-            <ListItem selected={path == "/dashboard"}>
-              <ListItemPrefix>
-                <MdOutlineDashboard className="w-5 h-5" />
-              </ListItemPrefix>
-              Dashboard
-            </ListItem>
-          </Link>
+            open={open}
+            onClose={() => {
+              setopen(false);
+            }}
+            className="pt-10 pl-10 space-y-5 gap"
+          >
+            <List>
+              {/* dashboard link */}
+              <Link href={"/dashboard"}>
+                <ListItem selected={path == "/dashboard"}>
+                  <ListItemPrefix>
+                    <MdOutlineDashboard className="w-5 h-5" />
+                  </ListItemPrefix>
+                  Dashboard
+                </ListItem>
+              </Link>
 
-          {/* bookmarks link */}
-          <Link href={"/bookmarks"}>
-            <ListItem selected={path == "/bookmarks"}>
-              <ListItemPrefix>
-                <MdOutlineBookmarks className="w-5 h-5" />
-              </ListItemPrefix>
-              Bookmarks
-            </ListItem>
-          </Link>
-          {/* <Link href={"/trending"}>
+              {/* bookmarks link */}
+              <Link href={"/bookmarks"}>
+                <ListItem selected={path == "/bookmarks"}>
+                  <ListItemPrefix>
+                    <MdOutlineBookmarks className="w-5 h-5" />
+                  </ListItemPrefix>
+                  Bookmarks
+                </ListItem>
+              </Link>
+              {/* <Link href={"/trending"}>
             <ListItem selected={path == "/trending"}>
               <ListItemPrefix>
                 <MdOutlineLocalFireDepartment className="w-5 h-5" />
@@ -124,8 +142,8 @@ function RichHeader() {
               </ListItemSuffix>
             </ListItem>
           </Link> */}
-          <hr className="my-2 border-blue-gray-50" />
-          {/* <Link href={"/settings"}>
+              <hr className="my-2 border-blue-gray-50" />
+              {/* <Link href={"/settings"}>
             <ListItem selected={path == "/settings"}>
               <ListItemPrefix>
                 <MdOutlineSettings className="w-5 h-5" />
@@ -133,8 +151,8 @@ function RichHeader() {
               Settings
             </ListItem>
           </Link> */}
-        </List>
-        </Drawer>
+            </List>
+          </Drawer>
         </>
       }
     />
