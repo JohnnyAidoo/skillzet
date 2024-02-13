@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { Alert, Button, Input } from "@/public/components/clientComp";
-import { firebaseStore } from "../backend/firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { firebaseAuth, firebaseStore } from "../backend/firebase";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { Textarea } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 
@@ -27,8 +27,12 @@ function Upload() {
   const upload_course = async () => {
     const collection_ref = collection(firebaseStore, "Course");
     try {
-      const docref = await addDoc(collection_ref, formData);
-      if (docref.id) {
+      let id: any | undefined;
+      const docref = await addDoc(collection_ref, formData).then((item) => {
+        updateDoc(doc(firebaseStore, "Course", item.id), { id: item.id });
+        id = item.id;
+      });
+      if (id != undefined) {
         seAlert(<Alert color="green"> Course Uploaded</Alert>);
         router.refresh();
       } else {
