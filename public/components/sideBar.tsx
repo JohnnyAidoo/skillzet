@@ -74,14 +74,14 @@ function SideBar() {
             </ListItem>
           </Link> */}
             <hr className="my-2 border-blue-gray-50" />
-            <Link href={"/settings"}>
+            {/* <Link href={"/settings"}>
               <ListItem selected={path == "/settings"}>
                 <ListItemPrefix>
                   <MdOutlineSettings className="w-5 h-5" />
                 </ListItemPrefix>
                 Settings
               </ListItem>
-            </Link>
+            </Link> */}
           </List>
         </Card>
       </aside>
