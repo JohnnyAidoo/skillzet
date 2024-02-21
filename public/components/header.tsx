@@ -4,8 +4,7 @@ import styles from "../static/theme";
 import { ReactElement, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-function 
-Header(props: { sub: ReactElement }) {
+function Header(props: { sub: ReactElement }) {
   const router = useRouter();
   useEffect(() => {
     const user_id = localStorage.getItem("user_id");
@@ -20,9 +19,7 @@ Header(props: { sub: ReactElement }) {
         <Link href="/dashboard">
           <h1 className="text-4xl font-bold text-indigo-500">skillZet</h1>
         </Link>
-        <div>        
-        {props.sub}
-        </div>
+        <div>{props.sub}</div>
       </header>
     </>
   );
