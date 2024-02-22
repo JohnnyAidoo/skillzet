@@ -8,11 +8,15 @@ import styles from "../public/static/theme";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useRouter } from "next/navigation";
+import LandingPage from "./landingPage";
 
 function App() {
+  const router = useRouter();
   useEffect(() => {
     AOS.init();
   });
+
   return (
     <>
       <Header
@@ -155,4 +159,14 @@ function App() {
   );
 }
 
-export default App;
+export { App };
+
+const LandingPageRender = () => {
+  return (
+    <>
+      <LandingPage />
+    </>
+  );
+};
+
+export default LandingPageRender;
