@@ -3,19 +3,42 @@ import Image from "next/image";
 import heroImg from "../public/heroImg.png";
 import Header from "../public/components/header";
 import Link from "next/link";
-import { Button, ButtonGroup, Typography } from "@material-tailwind/react";
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  Collapse,
+  Input,
+  Typography,
+} from "@material-tailwind/react";
 import styles from "../public/static/theme";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useRouter } from "next/navigation";
-import LandingPage from "./landingPage";
+import { addDoc, collection } from "firebase/firestore";
+import { firebaseStore } from "./backend/firebase";
+import { MdCheck } from "react-icons/md";
 
 function App() {
+  const [success, setSuccess] = useState({ ui: <></>, off: "" });
+  const [userEmail, setUserEmail] = useState("");
   const router = useRouter();
   useEffect(() => {
     AOS.init();
   });
+
+  const addToList = () => {
+    const collection_ref = collection(firebaseStore, "waitlist");
+    addDoc(collection_ref, { email: userEmail }).then((res) => {
+      res.id
+        ? setSuccess({
+            ui: <MdCheck data-aos="fade-up" color="green" size={100} />,
+            off: "",
+          })
+        : null;
+    });
+  };
 
   return (
     <>
@@ -23,7 +46,7 @@ function App() {
         sub={
           <>
             <div className="w-1/2"></div>
-            <ButtonGroup variant="filled" size="md">
+            {/* <ButtonGroup variant="filled" size="md">
               <Link href="/auth/signup" id="">
                 <Button
                   className="shadow-none "
@@ -46,11 +69,21 @@ function App() {
                   LOG IN
                 </Button>
               </Link>
-            </ButtonGroup>
+            </ButtonGroup> */}
+            <Link href="#wait">
+              <Button
+                style={{
+                  backgroundColor: styles.light.cta,
+                  color: styles.light.primaryLight,
+                }}
+              >
+                Join WaitList
+              </Button>
+            </Link>
           </>
         }
       />
-      <main className="overflow-x-clip w-full absolute bg-[url('../public/static/ssshape.svg')] bg-no-repeat bg-left-bottom bg-contain bg-blend-lighten">
+      <main className="overflow-x-clip w-full px-10 absolute bg-[url('../public/static/ssshape.svg')] bg-no-repeat bg-left-bottom bg-contain bg-blend-lighten">
         <section
           id="hero"
           className="flex items-center justify-between h-full "
@@ -66,6 +99,14 @@ function App() {
               transformation? Welcome to
               <span className="font-bold"> skillZet</span>, your gateway to a
               world of online learning and personal development.
+              <br />
+              <Typography
+                variant="h3"
+                className="font-bold"
+                style={{ color: "#0011fa" }}
+              >
+                ALL FOR FREE
+              </Typography>
             </p>
           </div>
           <div
@@ -127,12 +168,11 @@ function App() {
           </section>
 
           {/*  */}
-          <section className="flex justify-center w-full mb-10">
+          <section className="flex justify-center w-full mb-10" id="wait">
             <div className="flex flex-col items-center justify-center w-full ">
               <Typography variant="h1" className="mb-2 text-center">
                 Get Started Today
               </Typography>
-
               <p
                 data-aos="fade-up"
                 className="px-5 mb-5 font-semibold text-center md:w-2/3"
@@ -141,7 +181,7 @@ function App() {
                 and explore our diverse course offerings. Whether you are a
                 novice or an expert,skillZet has something to offer you.
               </p>
-              <Link href={"/auth/login"}>
+              {/* <Link href={"/auth/login"}>
                 <Button
                   style={{ backgroundColor: styles.light.cta }}
                   size="lg"
@@ -149,7 +189,25 @@ function App() {
                 >
                   BEGIN
                 </Button>
-              </Link>
+              </Link> */}
+              <form
+                onSubmit={addToList}
+                className="flex flex-col items-center w-4/12 "
+              >
+                <Card className="w-full mx-auto my-4">
+                  <Input
+                    crossOrigin
+                    type="email"
+                    label="email"
+                    size="lg"
+                    value={userEmail}
+                    onChange={(e) => {
+                      setUserEmail(e.target.value);
+                    }}
+                  />
+                </Card>
+                <Button onClick={addToList}>Join WaitList</Button>
+              </form>
             </div>
             <div className="mb-10 mt-52"></div>
           </section>
@@ -159,14 +217,4 @@ function App() {
   );
 }
 
-export { App };
-
-const LandingPageRender = () => {
-  return (
-    <>
-      <LandingPage />
-    </>
-  );
-};
-
-export default LandingPageRender;
+export default App;
