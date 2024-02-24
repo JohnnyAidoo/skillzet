@@ -12,7 +12,7 @@ function Bio(props: { cta: ReactElement }) {
         <div className="flex flex-col items-center justify-center w-1/2 gap-5 h-1/2">
           <Typography variant="h2"> Write a bit about yourself </Typography>
           <Typography variant="paragraph">
-            A bit of who you are. Don't think too hard, Just make it fun
+            A bit of who you are. Don&apos;t think too hard, Just make it fun
           </Typography>
           <Textarea size="lg" placeholder="bio" />
 
