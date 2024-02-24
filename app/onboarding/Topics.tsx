@@ -26,7 +26,13 @@ function Topics(props: { cta: ReactElement }) {
 
           <div className="grid grid-cols-4 "></div>
           {topic_list.map((topic) => (
-            <Chip value={topic} size="lg" color="blue" variant="ghost" />
+            <Chip
+              key={topic}
+              value={topic}
+              size="lg"
+              color="blue"
+              variant="ghost"
+            />
           ))}
           {props.cta}
         </div>

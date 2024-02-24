@@ -44,11 +44,6 @@ function CourseDetailComp() {
   const courseID = params.courseDetails;
   const [couresDetail, setCourseDetail] = useState<Course>();
 
-  useEffect(() => {
-    AOS.init();
-    getCourse();
-  }, []);
-
   const getCourse = async () => {
     const docRef = await doc(firebaseStore, "Course", courseID as string);
     const docSnap = await getDoc(docRef);
@@ -85,7 +80,10 @@ function CourseDetailComp() {
     localStorage.setItem(videoID as string, event.target.getCurrentTime());
     localStorage.setItem("CURRENTLY_LEARNING", videoID as string);
   };
-
+  useEffect(() => {
+    AOS.init();
+    getCourse();
+  }, []);
   return (
     <>
       <Header
