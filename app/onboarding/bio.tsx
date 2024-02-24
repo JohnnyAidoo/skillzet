@@ -1,6 +1,5 @@
 "use client";
-import { Button } from "@/public/components/clientComp";
-import Header from "@/public/components/header";
+
 import { Textarea, Typography } from "@material-tailwind/react";
 import Link from "next/link";
 import { ReactElement } from "react";
