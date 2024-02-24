@@ -21,23 +21,30 @@ import { firebaseStore } from "./backend/firebase";
 import { MdCheck } from "react-icons/md";
 
 function App() {
-  const [success, setSuccess] = useState({ ui: <></>, off: "" });
+  const [success, setSuccess] = useState();
   const [userEmail, setUserEmail] = useState("");
   const router = useRouter();
   useEffect(() => {
     AOS.init();
   });
 
-  const addToList = () => {
+  const addToList = (e: any) => {
+    e.preventDefault();
     const collection_ref = collection(firebaseStore, "waitlist");
-    addDoc(collection_ref, { email: userEmail }).then((res) => {
-      res.id
-        ? setSuccess({
-            ui: <MdCheck data-aos="fade-up" color="green" size={100} />,
-            off: "",
-          })
-        : null;
-    });
+    if (userEmail !== "") {
+      try {
+        addDoc(collection_ref, { email: userEmail }).then((res) => {
+          res.id
+            ? setSuccess(
+                // @ts-ignore
+                <MdCheck data-aos="fade-up" color="green" size={100} />
+              )
+            : null;
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
   };
 
   return (
@@ -190,24 +197,26 @@ function App() {
                   BEGIN
                 </Button>
               </Link> */}
-              <form
-                onSubmit={addToList}
-                className="flex flex-col items-center w-4/12 "
-              >
-                <Card className="w-full mx-auto my-4">
-                  <Input
-                    crossOrigin
-                    type="email"
-                    label="email"
-                    size="lg"
-                    value={userEmail}
-                    onChange={(e) => {
-                      setUserEmail(e.target.value);
-                    }}
-                  />
-                </Card>
-                <Button onClick={addToList}>Join WaitList</Button>
-              </form>
+              {success || (
+                <form
+                  onSubmit={addToList}
+                  className="flex flex-col items-center w-full sm:w-4/12"
+                >
+                  <Card className="w-full mx-auto my-4">
+                    <Input
+                      crossOrigin
+                      type="email"
+                      label="email"
+                      size="lg"
+                      value={userEmail}
+                      onChange={(e) => {
+                        setUserEmail(e.target.value);
+                      }}
+                    />
+                  </Card>
+                  <Button onClick={addToList}>Join WaitList</Button>
+                </form>
+              )}
             </div>
             <div className="mb-10 mt-52"></div>
           </section>
