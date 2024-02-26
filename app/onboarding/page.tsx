@@ -1,8 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
-import { Stepper, Step, Button } from "@material-tailwind/react";
+import { Stepper, Step, Button, ButtonGroup } from "@material-tailwind/react";
 import Welcome from "./Wecome";
-import Header from "@/public/components/header";
 import styles from "@/public/static/theme";
 import Bio from "./bio";
 import DateOfBirth from "./dateOfBirth";
@@ -59,12 +58,24 @@ export default function DefaultStepper() {
       setContent(
         <DateOfBirth
           cta={
-            <Button
-              onClick={handleNext}
-              style={{ backgroundColor: styles.light.cta }}
-            >
-              Next
-            </Button>
+            <ButtonGroup>
+              <Button
+                onClick={handleNext}
+                style={{ backgroundColor: styles.light.cta }}
+              >
+                Next
+              </Button>
+              <Button
+                variant="outlined"
+                style={{
+                  backgroundColor: styles.light.primaryLight,
+                  color: styles.light.cta,
+                }}
+                onClick={handleNext}
+              >
+                Skip
+              </Button>
+            </ButtonGroup>
           }
         />
       );
@@ -82,7 +93,7 @@ export default function DefaultStepper() {
         />
       );
     }
-  }, []);
+  }, [content]);
 
   return (
     <>

@@ -24,16 +24,19 @@ function Topics(props: { cta: ReactElement }) {
         <div className="flex flex-col items-center justify-center w-1/2 gap-5 h-1/2">
           <Typography variant="h2"> What are you going to learn? </Typography>
 
-          <div className="grid grid-cols-4 "></div>
-          {topic_list.map((topic) => (
-            <Chip
-              key={topic}
-              value={topic}
-              size="lg"
-              color="blue"
-              variant="ghost"
-            />
-          ))}
+          <div className="grid grid-cols-4 gap-5">
+            {topic_list.map((topic) => (
+              <Chip
+                className="px-96"
+                key={topic}
+                value={topic}
+                size="lg"
+                color="blue"
+                variant="ghost"
+              />
+            ))}
+          </div>
+
           {props.cta}
         </div>
       </main>

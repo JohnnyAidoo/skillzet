@@ -13,7 +13,7 @@ function Bio(props: { cta: ReactElement }) {
           <Typography variant="paragraph">
             A bit of who you are. Don&apos;t think too hard, Just make it fun
           </Typography>
-          <Textarea size="lg" placeholder="bio" />
+          <Textarea size="lg" label="bio" />
 
           {props.cta}
         </div>
