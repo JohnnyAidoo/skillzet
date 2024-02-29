@@ -8,8 +8,8 @@ import { ReactElement } from "react";
 function DateOfBirth(props: { cta: ReactElement }) {
   return (
     <>
-      <main className="absolute flex flex-col items-center justify-center w-full h-full overflow-x-clip bg-blend-lighten">
-        <div className="flex flex-col items-center justify-center w-1/2 gap-5 h-1/2">
+      <main className="flex flex-col items-center justify-center w-full h-full overflow-x-clip bg-blend-lighten">
+        <div className="flex flex-col items-center justify-center gap-5 md:w-1/2 h-1/2">
           <Typography variant="h2"> What is your birth date? </Typography>
           <Input type="date" crossOrigin={undefined} />
           {props.cta}

@@ -1,11 +1,23 @@
 "use client";
-import { Button } from "@/public/components/clientComp";
 import Header from "@/public/components/header";
-import { Chip, Textarea, Typography } from "@material-tailwind/react";
+import { Button, Textarea, Typography } from "@material-tailwind/react";
 import Link from "next/link";
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 
 function Topics(props: { cta: ReactElement }) {
+  const [selectedTopics, setSelectedTopics] = useState([]);
+
+  const toggleTopic = (topic: never) => {
+    if (selectedTopics.includes(topic)) {
+      setSelectedTopics(selectedTopics.filter((t) => t !== topic));
+    } else {
+      setSelectedTopics([...selectedTopics, topic]);
+    }
+  };
+  // useEffect(() => {
+  //   console.log(selectedTopics);
+  // }, [selectedTopics]);
+
   const topic_list = [
     "Frontend Development",
     "Backend Development",
@@ -20,20 +32,27 @@ function Topics(props: { cta: ReactElement }) {
 
   return (
     <>
-      <main className="absolute flex flex-col items-center justify-center w-full h-full overflow-x-clip bg-blend-lighten">
-        <div className="flex flex-col items-center justify-center w-1/2 gap-5 h-1/2">
+      <main className="flex flex-col items-center justify-center w-full h-full overflow-x-clip bg-blend-lighten">
+        <div className="flex flex-col items-center justify-center gap-5 md:w-3/4 h-1/2">
           <Typography variant="h2"> What are you going to learn? </Typography>
 
-          <div className="grid grid-cols-4 gap-5">
+          <div className="flex flex-wrap w-full gap-2">
             {topic_list.map((topic) => (
-              <Chip
-                className="px-96"
+              <Button
+                onClick={() => {
+                  toggleTopic(topic as never);
+                }}
+                variant={
+                  selectedTopics.includes(topic as never)
+                    ? "filled"
+                    : "outlined"
+                }
+                color="indigo"
                 key={topic}
-                value={topic}
-                size="lg"
-                color="blue"
-                variant="ghost"
-              />
+                className="px-3 min-w-1/4"
+              >
+                {topic}
+              </Button>
             ))}
           </div>
 
