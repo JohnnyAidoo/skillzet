@@ -11,7 +11,6 @@ import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Button,
-  Collapse,
   Drawer,
   List,
   ListItem,
@@ -22,22 +21,14 @@ import {
 } from "@material-tailwind/react";
 import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-  MdDoNotTouch,
-  MdEqualizer,
-  MdFormatAlignCenter,
-  MdLineAxis,
-  MdMultilineChart,
-  MdMultipleStop,
-  MdOutlineBookmarks,
-  MdOutlineDashboard,
-  MdOutlineSearch,
-  MdVerticalAlignBottom,
-} from "react-icons/md";
+import { MdFormatAlignCenter, MdLineAxis } from "react-icons/md";
+import { nav_links } from "./constant/urls";
 
 function RichHeader() {
+  const pathname = usePathname();
+
   const router = useRouter();
   const [open, setopen] = useState(false);
   const [path, sePath] = useState<string>();
@@ -106,51 +97,18 @@ function RichHeader() {
             className="pt-10 pl-10 space-y-5 gap"
           >
             <List>
-              {/* dashboard link */}
-              <Link href={"/dashboard"}>
-                <ListItem selected={path == "/dashboard"}>
-                  <ListItemPrefix>
-                    <MdOutlineDashboard className="w-5 h-5" />
-                  </ListItemPrefix>
-                  Dashboard
-                </ListItem>
-              </Link>
+              {nav_links.map((item) => {
+                const current_route: boolean = item.url === pathname;
 
-              {/* bookmarks link */}
-              <Link href={"/bookmarks"}>
-                <ListItem selected={path == "/bookmarks"}>
-                  <ListItemPrefix>
-                    <MdOutlineBookmarks className="w-5 h-5" />
-                  </ListItemPrefix>
-                  Bookmarks
-                </ListItem>
-              </Link>
-              {/* <Link href={"/trending"}>
-            <ListItem selected={path == "/trending"}>
-              <ListItemPrefix>
-                <MdOutlineLocalFireDepartment className="w-5 h-5" />
-              </ListItemPrefix>
-              Trending Topics
-              <ListItemSuffix>
-                <Chip
-                  value="14"
-                  size="sm"
-                  variant="ghost"
-                  color="blue-gray"
-                  className="rounded-full"
-                />
-              </ListItemSuffix>
-            </ListItem>
-          </Link> */}
-              <hr className="my-2 border-blue-gray-50" />
-              {/* <Link href={"/settings"}>
-            <ListItem selected={path == "/settings"}>
-              <ListItemPrefix>
-                <MdOutlineSettings className="w-5 h-5" />
-              </ListItemPrefix>
-              Settings
-            </ListItem>
-          </Link> */}
+                return (
+                  <Link href={item.url}>
+                    <ListItem selected={current_route}>
+                      <ListItemPrefix>{item.icon}</ListItemPrefix>
+                      {item.label}
+                    </ListItem>
+                  </Link>
+                );
+              })}
             </List>
           </Drawer>
         </>

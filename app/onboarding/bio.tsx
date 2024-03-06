@@ -1,10 +1,14 @@
 "use client";
 
 import { Textarea, Typography } from "@material-tailwind/react";
-import Link from "next/link";
 import { ReactElement } from "react";
 
 function Bio(props: { cta: ReactElement }) {
+
+  const UploadBio = () =>{
+    
+  }
+
   return (
     <>
       <main className="flex flex-col items-center justify-center w-full h-full overflow-x-clip bg-blend-lighten ">

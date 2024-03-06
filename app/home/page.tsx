@@ -62,17 +62,14 @@ function HomePage() {
 
   useEffect(() => {
     const user_id = localStorage.getItem("user_id");
-    user_id != null ? router.replace("/dashboard") : null;
+    user_id != null ? router.replace("/home") : null;
   }, [router]);
 
   return (
     <>
       <RichHeader />
       <SideBar />
-      <main
-       
-        className="bottom-0 flex flex-col float-right px-10"
-      >
+      <main className="bottom-0 flex flex-col float-right px-10">
         <div
           className="w-full mb-10 bg-gray-400 rounded-lg"
           style={{ minHeight: "30vh" }}

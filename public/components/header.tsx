@@ -16,7 +16,7 @@ function Header(props: { sub: ReactElement }) {
         className="sticky top-0 z-50 flex items-center justify-between w-full mb-5"
         style={{ backgroundColor: styles.light.primaryLight }}
       >
-        <Link href="/dashboard">
+        <Link href="/home">
           <h1 className="text-4xl font-bold text-indigo-500">skillZet</h1>
         </Link>
         <div>{props.sub}</div>

@@ -4,7 +4,7 @@ import { Stepper, Step, Button, ButtonGroup } from "@material-tailwind/react";
 import Welcome from "./Wecome";
 import styles from "@/public/static/theme";
 import Bio from "./bio";
-import DateOfBirth from "./dateOfBirth";
+import ProfilePicture from "./profilePicture";
 import Topics from "./Topics";
 
 export default function DefaultStepper() {
@@ -56,7 +56,7 @@ export default function DefaultStepper() {
       );
     } else if (activeStep === 2) {
       setContent(
-        <DateOfBirth
+        <ProfilePicture
           cta={
             <ButtonGroup>
               <Button

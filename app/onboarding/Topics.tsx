@@ -14,20 +14,24 @@ function Topics(props: { cta: ReactElement }) {
       setSelectedTopics([...selectedTopics, topic]);
     }
   };
-  // useEffect(() => {
-  //   console.log(selectedTopics);
-  // }, [selectedTopics]);
+  //
 
   const topic_list = [
     "Frontend Development",
     "Backend Development",
+    "Full Stack Development",
+    "DevOps",
+    "Android Development",
+    "Data Science",
     "Mobile Development",
     "Web Development",
     "Database Development",
     "Data Analysis",
-    "AI Development",
+    "AI and Data Science",
     "Game Development",
     "Cloud Computing",
+    "Block chain",
+    "DataStructures and Algorithms",
   ];
 
   return (

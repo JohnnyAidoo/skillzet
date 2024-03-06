@@ -1,28 +1,12 @@
 "use client";
 import styles from "../static/theme";
-import {
-  MdOutlineDashboard,
-  MdOutlineBookmarks,
-  MdOutlineLocalFireDepartment,
-  MdOutlineSettings,
-} from "react-icons/md";
-import {
-  Card,
-  List,
-  ListItem,
-  ListItemPrefix,
-  ListItemSuffix,
-  Chip,
-  Navbar,
-} from "@material-tailwind/react";
+import { Card, List, ListItem, ListItemPrefix } from "@material-tailwind/react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { nav_links } from "./constant/urls";
+import { usePathname } from "next/navigation";
 
 function SideBar() {
-  const [path, sePath] = useState<string>();
-  useEffect(() => {
-    sePath(window.location.pathname);
-  }, [path]);
+  const pathname = usePathname();
 
   return (
     <>
@@ -36,52 +20,22 @@ function SideBar() {
           className="w-full h-full p-4 border-r-4 border-black border-solid shadow-xl shadow-blue-gray-900/5"
         >
           <div className="p-4 mb-2"></div>
-          <List>
-            {/* dashboard link */}
-            <Link href={"/dashboard"}>
-              <ListItem selected={path == "/dashboard"}>
-                <ListItemPrefix>
-                  <MdOutlineDashboard className="w-5 h-5" />
-                </ListItemPrefix>
-                Dashboard
-              </ListItem>
-            </Link>
 
-            {/* bookmarks link */}
-            <Link href={"/bookmarks"}>
-              <ListItem selected={path == "/bookmarks"}>
-                <ListItemPrefix>
-                  <MdOutlineBookmarks className="w-5 h-5" />
-                </ListItemPrefix>
-                Bookmarks
-              </ListItem>
-            </Link>
-            {/* <Link href={"/trending"}>
-            <ListItem selected={path == "/trending"}>
-              <ListItemPrefix>
-                <MdOutlineLocalFireDepartment className="w-5 h-5" />
-              </ListItemPrefix>
-              Trending Topics
-              <ListItemSuffix>
-                <Chip
-                  value="14"
-                  size="sm"
-                  variant="ghost"
-                  color="blue-gray"
-                  className="rounded-full"
-                />
-              </ListItemSuffix>
-            </ListItem>
-          </Link> */}
+          <List>
+            {nav_links.map((item) => {
+              const current_route: boolean = item.url === pathname;
+
+              return (
+                <Link href={item.url}>
+                  <ListItem selected={current_route}>
+                    <ListItemPrefix>{item.icon}</ListItemPrefix>
+                    {item.label}
+                  </ListItem>
+                </Link>
+              );
+            })}
+
             <hr className="my-2 border-blue-gray-50" />
-            {/* <Link href={"/settings"}>
-              <ListItem selected={path == "/settings"}>
-                <ListItemPrefix>
-                  <MdOutlineSettings className="w-5 h-5" />
-                </ListItemPrefix>
-                Settings
-              </ListItem>
-            </Link> */}
           </List>
         </Card>
       </aside>
