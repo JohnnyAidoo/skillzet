@@ -18,6 +18,10 @@ import {
   Badge,
   Alert as MTAlert,
   Textarea,
+  TypographyProps,
+  TypographyStylesType,
+  InputProps,
+  AvatarProps,
 } from "@material-tailwind/react";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import styles from "../static/theme";
@@ -89,33 +93,9 @@ export function Button(props: {
   );
 }
 
-export function Input(props: {
-  label: string;
-  type: HTMLInputTypeAttribute;
-  className?: string;
-  width?: string | number;
-  icon?: ReactNode;
-  name?: string;
-  value?: string | number | readonly string[] | undefined;
-  onClick?: MouseEventHandler<HTMLInputElement> | undefined;
-  onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
-}) {
-  return (
-    <MTInput
-      onClick={props.onClick}
-      icon={props.icon}
-      width={props.width}
-      className={props.className}
-      variant="outlined"
-      label={props.label}
-      crossOrigin={undefined}
-      size="lg"
-      type={props.label}
-      name={props.name}
-      value={props.value}
-      onChange={props.onChange}
-    />
-  );
+export function Input(props: InputProps) {
+  // @ts-ignore
+  return <MTInput {...props} />;
 }
 export function IconButton(props: {
   icon: IconDefinition;
@@ -133,20 +113,10 @@ export function IconButton(props: {
   );
 }
 
-export function Avatar(props: {
-  src: string;
-  alt: string;
-  className?: string;
-  size?: size | undefined;
-}) {
-  return (
-    <MTAvatar
-      className={props.className}
-      src={props.src}
-      alt={props.alt}
-      size={props.size}
-    />
-  );
+export function Avatar(props: AvatarProps) {
+  // @ts-ignore
+
+  return <MTAvatar {...props} />;
 }
 export function CardTemplate(props: {
   onClick?: MouseEventHandler<HTMLDivElement> | undefined;
@@ -229,13 +199,13 @@ export function CardTemplate(props: {
       console.log(err);
     }
   };
-  useEffect(()=>{
-    if (alert != <></>){
+  useEffect(() => {
+    if (alert != <></>) {
       setTimeout(() => {
         setAlert(<></>);
       }, 3000);
     }
-  })
+  });
 
   return (
     <>
@@ -339,6 +309,27 @@ export function Alert(props: {
     <MTAlert className="absolute top-0 z-10 text-center" color={props.color}>
       {props.children}
     </MTAlert>
+  );
+}
+
+export function Text(props: TypographyProps) {
+  // @ts-ignore
+  return <Typography {...props} />;
+}
+export function CourseCategoryCard(props: {
+  title: string;
+  onClick?: MouseEventHandler<HTMLDivElement> | undefined;
+}) {
+  return (
+    <Card
+      onClick={props.onClick}
+      className="grid justify-center overflow-hidden text-center text-white"
+      style={{ backgroundColor: styles.light.cta }}
+    >
+      <CardBody className="bg-red-300">
+        <Typography>{props.title}</Typography>
+      </CardBody>
+    </Card>
   );
 }
 

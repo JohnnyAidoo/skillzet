@@ -1,10 +1,6 @@
 "use client";
 import { firebaseAuth } from "@/app/backend/firebase";
-import {
-  Avatar,
-  Input,
-  NotificationPopUP,
-} from "@/public/components/clientComp";
+import { Avatar, Input } from "@/public/components/clientComp";
 
 import Header from "@/public/components/header";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
@@ -23,10 +19,18 @@ import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { MdFormatAlignCenter, MdLineAxis } from "react-icons/md";
+import {
+  MdFormatAlignCenter,
+  MdLineAxis,
+  MdOutlineSearch,
+} from "react-icons/md";
 import { nav_links } from "./constant/urls";
 
-function RichHeader() {
+function RichHeader(props: {
+  searchFunction?: any;
+  searchOnChange?: any;
+  searchValue?: string | number | readonly string[] | undefined;
+}) {
   const pathname = usePathname();
 
   const router = useRouter();
@@ -50,21 +54,28 @@ function RichHeader() {
     <Header
       sub={
         <>
-          <div className="w-1/3 mx-10">
-            {/* <Input
-              label="search"
-              type="search"
-              icon={<MdOutlineSearch size={30} />}
-            /> */}
-          </div>
+          {pathname == "/search" ? (
+            <div className="w-1/2 mx-10">
+              <Input
+                value={props.searchValue}
+                onChange={props.searchOnChange}
+                onClick={props.searchFunction}
+                label="search"
+                type="search"
+                icon={<MdOutlineSearch size={30} />}
+              />
+            </div>
+          ) : null}
           <div className="flex items-center justify-between ">
             {/* <NotificationPopUP /> */}
             <Popover placement="bottom">
               <PopoverHandler>
                 <Button size="sm" color="white" className="shadow-none">
                   <Avatar
+                    withBorder
+                    color="blue"
                     className="mx-2"
-                    src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=s"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
                     alt="l"
                   />
                 </Button>

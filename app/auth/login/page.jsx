@@ -44,7 +44,7 @@ function LoginPage() {
     signIn(formData.email, formData.password)
       .then((userCredentials) => {
         localStorage.setItem("user_id", userCredentials.user.uid);
-        router.replace("/dashboard");
+        router.replace("/home");
       })
       .catch((err) => {
         console.log(err);
@@ -56,7 +56,7 @@ function LoginPage() {
     <>
       {alert}
       <section className="flex justify-around w-full h-screen lg:to-blue-800 from-white to-indigo-500">
-        <div 
+        <div
           data-aos="zoom-in"
           style={{ backgroundColor: styles.light.primaryLight }}
           className="flex flex-col items-center justify-center h-full px-16 lg:w-1/2"
@@ -64,9 +64,14 @@ function LoginPage() {
           <h1 className="mb-5 text-5xl font-bold">
             skill<span>Z</span>et
           </h1>
-          <h1 className="w-full m-0 mb-5 text-5xl font-bold text-center">Welcome Back</h1>
+          <h1 className="w-full m-0 mb-5 text-5xl font-bold text-center">
+            Welcome Back
+          </h1>
           <p></p>
-          <form onSubmit={handleSignIn} className="flex flex-col items-center justify-around w-3/4 h-1/4 from-white to-indigo-500">
+          <form
+            onSubmit={handleSignIn}
+            className="flex flex-col items-center justify-around w-3/4 h-1/4 from-white to-indigo-500"
+          >
             <Input
               onChange={handleInputChange}
               label="Email"

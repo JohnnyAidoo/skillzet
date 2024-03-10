@@ -2,9 +2,10 @@
 import Link from "next/link";
 import styles from "../static/theme";
 import { ReactElement, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 function Header(props: { sub: ReactElement }) {
+  const pathname = usePathname();
   const router = useRouter();
   useEffect(() => {
     const user_id = localStorage.getItem("user_id");
@@ -19,7 +20,13 @@ function Header(props: { sub: ReactElement }) {
         <Link href="/home">
           <h1 className="text-4xl font-bold text-indigo-500">skillZet</h1>
         </Link>
-        <div>{props.sub}</div>
+        <div
+          className={`flex ${
+            pathname == "/search" ? "justify-between" : "justify-end"
+          } w-3/5`}
+        >
+          {props.sub}
+        </div>
       </header>
     </>
   );
