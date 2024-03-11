@@ -12,7 +12,6 @@ import {
   MdOutlineNotifications,
   MdOutlineSearch,
   MdStar,
-  MdPlayArrow,
   MdPerson,
   MdMoney,
   MdTimer,
@@ -26,6 +25,7 @@ import { firebaseStore } from "@/app/backend/firebase";
 import Image from "next/image";
 import YouTube from "react-youtube";
 import { getAuth } from "firebase/auth";
+import { Typography } from "@material-tailwind/react";
 
 function CourseDetailComp() {
   type Course = {
@@ -39,6 +39,7 @@ function CourseDetailComp() {
     duration: string;
     course_category: string;
     description: string;
+    views: string;
   };
   const params = useParams();
   const courseID = params.courseDetails;
@@ -180,9 +181,10 @@ function CourseDetailComp() {
         </div>
 
         {/*  */}
-        <b style={{ color: styles.light.cta }}>
-          5,377 already enrolled! After a course session ends.
-        </b>
+        <Typography variant="lead" style={{ color: styles.light.cta }}>
+          <b>{couresDetail?.views || `5,377`}</b> already enrolled! After a
+          course session ends.
+        </Typography>
 
         {/*  */}
         <div className="py-3 bg-gray-200 w-fit px-7">

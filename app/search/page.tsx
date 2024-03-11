@@ -9,8 +9,11 @@ import SideBar from "@/public/components/sideBar";
 import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { firebaseStore } from "../backend/firebase";
+import { useRouter } from "next/navigation";
 
 export default function SearchPage() {
+  const router = useRouter();
+
   const [courseList, setCourses] = useState<Course[]>();
   const [searchOverlay, setSearchOverlay] = useState();
   const [searchValue, setSearchValue] = useState<string>();
@@ -22,7 +25,6 @@ export default function SearchPage() {
     "DevOps",
     "Android Development",
     "Data Science",
-    "Mobile Development",
     "Web Development",
   ];
 
@@ -38,28 +40,31 @@ export default function SearchPage() {
     course_category: string;
   };
 
-  useEffect(() => {
-    const get_data = async () => {
-      const collection_ref = collection(firebaseStore, "Course");
-      const doc_ref = await getDocs(collection_ref);
+  // useEffect(() => {
+  //   const get_data = async () => {
+  //     const collection_ref = collection(firebaseStore, "Course");
+  //     const doc_ref = await getDocs(collection_ref);
 
-      let courses: Course[] = [];
+  //     let courses: Course[] = [];
 
-      const courseData = doc_ref.forEach((doc) => {
-        courses.push({ id: doc.id, ...doc.data() } as Course);
-      });
+  //     const courseData = doc_ref.forEach((doc) => {
+  //       courses.push({ id: doc.id, ...doc.data() } as Course);
+  //     });
 
-      setCourses(courses);
+  //     setCourses(courses);
 
-      // doc_ref.forEach((doc) => {
-      //   console.log(doc.id, "=>", doc.data());
-      // });
-    };
+  //     // doc_ref.forEach((doc) => {
+  //     //   console.log(doc.id, "=>", doc.data());
+  //     // });
+  //   };
 
-    get_data();
-  }, []);
+  //   get_data();
+  // }, []);
   // searchbar event
-  const handleSearch = () => {};
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+    router.push(`/search/${searchValue}`);
+  };
 
   return (
     <>

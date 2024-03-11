@@ -1,6 +1,6 @@
 "use client";
 import { firebaseAuth } from "@/app/backend/firebase";
-import { Avatar, Input } from "@/public/components/clientComp";
+import { Avatar, IconButton, Input } from "@/public/components/clientComp";
 
 import Header from "@/public/components/header";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
@@ -55,18 +55,25 @@ function RichHeader(props: {
       sub={
         <>
           {pathname == "/search" ? (
-            <div className="w-1/2 mx-10">
-              <Input
-                value={props.searchValue}
-                onChange={props.searchOnChange}
-                onClick={props.searchFunction}
-                label="search"
-                type="search"
-                icon={<MdOutlineSearch size={30} />}
-              />
+            <div className="mx-10 ">
+              <form onSubmit={props.searchFunction}>
+                <Input
+                  value={props.searchValue}
+                  onChange={props.searchOnChange}
+                  label="search"
+                  type="search"
+                  icon={
+                    <MdOutlineSearch
+                      className="hover:text-black"
+                      size={25}
+                      onClick={props.searchFunction}
+                    />
+                  }
+                />
+              </form>
             </div>
           ) : null}
-          <div className="flex items-center justify-between ">
+          <div className="items-center justify-between sm:flex">
             {/* <NotificationPopUP /> */}
             <Popover placement="bottom">
               <PopoverHandler>

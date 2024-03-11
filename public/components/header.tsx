@@ -20,6 +20,7 @@ function Header(props: { sub: ReactElement }) {
         <Link href="/home">
           <h1 className="text-4xl font-bold text-indigo-500">skillZet</h1>
         </Link>
+
         <div
           className={`flex ${
             pathname == "/search" ? "justify-between" : "justify-end"

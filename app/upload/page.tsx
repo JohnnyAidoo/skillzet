@@ -10,16 +10,19 @@ function Upload() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
-    course_category: "",
-    course_type: "",
-    duration: "",
+    course_category: "FullStack%20Development", // Default value for select
+    course_type: "One%20Video", // Default value for select
+    duration: 1, // Now a number for select
     rating: 0,
     description: "",
     video_url: "",
     owner: "",
+    views: "",
   });
   const [alert, seAlert] = useState(<></>);
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement> | any
+  ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -32,7 +35,7 @@ function Upload() {
         updateDoc(doc(firebaseStore, "Course", item.id), { id: item.id });
         id = item.id;
       });
-      if (id != undefined) {
+      if (id !== undefined) {
         seAlert(<Alert color="green"> Course Uploaded</Alert>);
         router.refresh();
       } else {
@@ -57,27 +60,41 @@ function Upload() {
             value={formData.title}
             onChange={handleChange}
           />
-          <Input
-            label="course category"
-            type="text"
+          <select
             name="course_category"
             value={formData.course_category}
             onChange={handleChange}
-          />
-          <Input
-            label="course type"
-            type="text"
+          >
+            <option value="FullStack%20Development">
+              FullStack Development
+            </option>
+            <option value="Web%20Development">Web Development</option>
+            <option value="Frontend%20Development">Frontend Development</option>
+            <option value="Backend%20Development">Backend Development</option>
+            <option value="Android%20Development">Android Development</option>
+            <option value="IOS%20Development">IOS Development</option>
+            <option value="Data%20Science">Data Science</option>
+            <option value="Data%20Analytics">Data Analytics</option>
+          </select>
+          <select
             name="course_type"
             value={formData.course_type}
             onChange={handleChange}
-          />
-          <Input
-            label="duration"
-            type="text"
+          >
+            <option value="One%20Video">One Video</option>
+            <option value="Playlist">Playlist</option>
+          </select>
+          <select
             name="duration"
             value={formData.duration}
             onChange={handleChange}
-          />
+          >
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
           <Input
             label="owner"
             type="text"
@@ -90,6 +107,13 @@ function Upload() {
             type="number"
             name="rating"
             value={formData.rating}
+            onChange={handleChange}
+          />
+          <Input
+            label="views"
+            type="text"
+            name="views"
+            value={formData.views}
             onChange={handleChange}
           />
           <Textarea
@@ -107,7 +131,7 @@ function Upload() {
             onChange={handleChange}
           />
         </form>
-        <Button title="Upload " onClick={upload_course} />
+        <Button title="Upload" onClick={upload_course} />
       </div>
       {alert}
     </>

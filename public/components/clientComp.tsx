@@ -22,6 +22,7 @@ import {
   TypographyStylesType,
   InputProps,
   AvatarProps,
+  IconButtonProps,
 } from "@material-tailwind/react";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import styles from "../static/theme";
@@ -64,6 +65,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 //
 //
@@ -97,19 +99,10 @@ export function Input(props: InputProps) {
   // @ts-ignore
   return <MTInput {...props} />;
 }
-export function IconButton(props: {
-  icon: IconDefinition;
-  className?: string;
-  color?: string;
-}) {
+export function IconButton(props: IconButtonProps) {
   return (
-    <MTIconButton className="bg-transparent">
-      <FontAwesomeIcon
-        className={props.className}
-        color={props.color}
-        icon={props.icon}
-      />
-    </MTIconButton>
+    // @ts-ignore
+    <MTIconButton {...props} className="bg-transparent"></MTIconButton>
   );
 }
 
@@ -211,9 +204,10 @@ export function CardTemplate(props: {
     <>
       {alert}
       <Card data-aos="fade-up " onClick={props.onClick} className="h-fit">
+        {/* card header */}
         <CardHeader>
           <div className="absolute bottom-0 z-20 p-2 mb-5 ml-3 text-black bg-white w-fit rounded-xl">
-            <p>{props.category}</p>
+            <p>{decodeURIComponent(props.category)}</p>
           </div>
           <img
             src={`https://i.ytimg.com/vi/${videoID}/maxresdefault.jpg`}
@@ -245,8 +239,10 @@ export function CardTemplate(props: {
               ))}
             </div>
           </div>
-          <div className="flex flex-col ">
-            <Typography variant="small">Duration : {props.duration}</Typography>
+          <div className="flex flex-col text-right">
+            <Typography variant="small">
+              Average Duration : {props.duration} day
+            </Typography>
             <Typography variant="small">{props.type}</Typography>
           </div>
         </CardBody>
@@ -316,20 +312,18 @@ export function Text(props: TypographyProps) {
   // @ts-ignore
   return <Typography {...props} />;
 }
-export function CourseCategoryCard(props: {
-  title: string;
-  onClick?: MouseEventHandler<HTMLDivElement> | undefined;
-}) {
+export function CourseCategoryCard(props: { title: string }) {
   return (
-    <Card
-      onClick={props.onClick}
-      className="grid justify-center overflow-hidden text-center text-white"
-      style={{ backgroundColor: styles.light.cta }}
-    >
-      <CardBody className="bg-red-300">
-        <Typography>{props.title}</Typography>
-      </CardBody>
-    </Card>
+    <Link href={`/search/${props.title}`}>
+      <Card
+        className="grid justify-center overflow-hidden text-center text-white"
+        style={{ backgroundColor: styles.light.cta }}
+      >
+        <CardBody className="bg-red-300">
+          <Typography>{props.title}</Typography>
+        </CardBody>
+      </Card>
+    </Link>
   );
 }
 
