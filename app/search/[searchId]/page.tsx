@@ -62,7 +62,7 @@ export default function SearchDetail() {
       <main className="bottom-0 flex flex-col float-right px-10">
         <div className="w-full mb-10">
           <Typography variant="h4" style={{ color: styles.light.textColor }}>
-            Search Result for "{decodeURIComponent(params as string)}"
+            Search Result for &#34;{decodeURIComponent(params as string)}&#34;
           </Typography>
           <div className="flex items-baseline w-full gap-1">
             <Typography variant="h6">{courseList?.length}</Typography>
@@ -80,6 +80,7 @@ export default function SearchDetail() {
           {/* filters */}
           <div className="flex w-full gap-5 mt-7">
             <Select
+              key={Selectedvalue}
               label="Sort by"
               color="blue"
               value={Selectedvalue}

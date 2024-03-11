@@ -312,10 +312,11 @@ export function Text(props: TypographyProps) {
   // @ts-ignore
   return <Typography {...props} />;
 }
-export function CourseCategoryCard(props: { title: string }) {
+export function CourseCategoryCard(props: { title: string; key: string }) {
   return (
-    <Link href={`/search/${props.title}`}>
+    <Link key={props.key} href={`/search/${props.title}`}>
       <Card
+        key={props.key}
         className="grid justify-center overflow-hidden text-center text-white"
         style={{ backgroundColor: styles.light.cta }}
       >

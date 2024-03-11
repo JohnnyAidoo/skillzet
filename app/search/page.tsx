@@ -79,7 +79,7 @@ export default function SearchPage() {
       <main className="bottom-0 flex flex-col float-right px-10">
         <div className="grid w-full grid-cols-1 gap-2 mb-10 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-y-5">
           {topic_list.map((topic) => (
-            <CourseCategoryCard title={topic} />
+            <CourseCategoryCard title={topic} key={topic} />
           ))}
         </div>
 
