@@ -11,13 +11,14 @@ import RichHeader from "@/public/components/richHeader";
 import { Typography } from "@material-tailwind/react";
 
 function BookmarkPage() {
-  const [bookmarks, setBookmarks] = useState<Course[]>();
+  const [bookmarkedCourses, setBookmarkedCourses] = useState<Course[]>();
 
   type Links = {
     id: string;
     uid: string;
     courseID: string;
   };
+
   type Course = {
     id: string;
     title: string;
@@ -30,41 +31,45 @@ function BookmarkPage() {
     course_category: string;
   };
 
+  const getBookmarkedCourses = async (): Promise<Course[]> => {
+    const collection_ref = collection(firebaseStore, "Bookmarks");
+    const q = query(
+      collection_ref,
+      where("uid", "==", getAuth().currentUser?.uid)
+    );
+    const doc_ref = await getDocs(q);
+
+    let links: Links[] = [];
+
+    doc_ref.forEach((doc) => {
+      links.push({ id: doc.id, ...doc.data() } as Links);
+    });
+    console.log(links);
+    const courseIDs = links.map((item) => item.courseID);
+
+    const coursesCollection_ref = collection(firebaseStore, "Course");
+    const courses_query = query(
+      coursesCollection_ref,
+      where("id", "in", courseIDs)
+    );
+    const courses_doc_ref = await getDocs(courses_query);
+
+    let courses: Course[] = [];
+    courses_doc_ref.forEach((doc) => {
+      courses.push({ id: doc.id, ...doc.data() } as Course);
+    });
+
+    return courses;
+  }
+
   useEffect(() => {
-    const get_data = async () => {
-      const collection_ref = collection(firebaseStore, "Bookmarks");
-      const q = await query(
-        collection_ref,
-        where("uid", "==", getAuth().currentUser?.uid)
-      );
-      const doc_ref = await getDocs(q);
+    getBookmarkedCourses()
+      .then(courses => setBookmarkedCourses(courses))
+      .catch(error => {
+        console.log(error)
+      })
+  }, []);
 
-      let links: Links[] = [];
-
-      const linksData = doc_ref.forEach((doc) => {
-        links.push({ id: doc.id, ...doc.data() } as Links);
-      });
-      console.log(links);
-      // let bookmarks:Course = [];
-      const courseIDs = links.map((item) => item.courseID);
-
-      const coursesCollection_ref = collection(firebaseStore, "Course");
-      const courses_query = await query(
-        coursesCollection_ref,
-        where("id", "in", courseIDs)
-      );
-      const courses_doc_ref = await getDocs(courses_query);
-
-      let courses: Course[] = [];
-      const courseData = courses_doc_ref.forEach((doc) => {
-        courses.push({ id: doc.id, ...doc.data() } as Course);
-      });
-
-      setBookmarks(courses);
-    };
-
-    get_data();
-  }, [bookmarks]);
   return (
     <>
       <RichHeader />
@@ -78,7 +83,7 @@ function BookmarkPage() {
         </div>
 
         <div className="grid w-full grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-y-10">
-          {bookmarks?.map((item) => (
+          {bookmarkedCourses?.map((item) => (
             <CardTemplate
               key={item.id}
               id={item.id}
