@@ -24,7 +24,7 @@ function LoginPage() {
 
   useEffect(() => {
     const user_id = localStorage.getItem("user_id");
-    user_id != null ? router.replace("/dashboard") : null;
+    user_id != null ? router.replace("/home") : null;
   }, [router]);
 
   const handleInputChange = (e: any) => {

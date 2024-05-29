@@ -1,6 +1,6 @@
-import { QuickTab } from "@/public/components/clientComp";
-import RichHeader from "@/public/components/richHeader";
-import SideBar from "@/public/components/sideBar";
+import { QuickTab } from "@/app/components/clientComp";
+import RichHeader from "@/app/components/richHeader";
+import SideBar from "@/app/components/sideBar";
 
 function TrendPage() {
   return (
