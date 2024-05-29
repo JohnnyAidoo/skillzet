@@ -37,7 +37,6 @@ import {
 import { firebaseAuth, firebaseStore } from "@/app/backend/firebase";
 import { colors } from "@material-tailwind/react/types/generic";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -50,6 +49,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { usePathname } from "next/navigation";
 
 //
 //
@@ -109,6 +109,7 @@ export function CardTemplate(props: {
 }) {
   const [bookmarked, setBookmarked] = useState<boolean>();
   const [alert, setAlert] = useState(<></>);
+  const pathname = usePathname();
   useEffect(() => {
     AOS.init();
   });
@@ -121,13 +122,14 @@ export function CardTemplate(props: {
       where("uid", "==", getAuth().currentUser?.uid),
       where("courseID", "==", props.id)
     );
+
     const querySnapshot = await getDocs(q);
     querySnapshot.empty ? setBookmarked(false) : setBookmarked(true);
   };
 
   //use effect to run check bookmark function
   useEffect(() => {
-    checkIfBookmarked();
+    pathname.includes("bookmarks") ? setBookmarked(true) : checkIfBookmarked();
   }, []);
 
   const regex = /(?<=\?v=)(.*?)(?=&|$)/;
@@ -149,7 +151,6 @@ export function CardTemplate(props: {
           uid: getAuth().currentUser?.uid,
           courseID: props.id,
         }).then(() => {
-          console.log("now marked");
           checkIfBookmarked();
           setAlert(
             <MTAlert

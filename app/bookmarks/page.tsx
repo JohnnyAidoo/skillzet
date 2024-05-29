@@ -28,41 +28,40 @@ function BookmarkPage() {
     course_category: string;
   };
 
+  const get_bookmarked_courses = async () => {
+    const collection_ref = collection(firebaseStore, "Bookmarks");
+    const q = await query(
+      collection_ref,
+      where("uid", "==", getAuth().currentUser?.uid)
+    );
+    const doc_ref = await getDocs(q);
+
+    let links: Links[] = [];
+    doc_ref.forEach((doc) => {
+      links.push({ id: doc.id, ...doc.data() } as Links);
+    });
+    console.log(links);
+    // let bookmarks:Course = [];
+    const courseIDs = links.map((item) => item.courseID);
+
+    const coursesCollection_ref = collection(firebaseStore, "Course");
+    const courses_query = await query(
+      coursesCollection_ref,
+      where("id", "in", courseIDs)
+    );
+    const courses_doc_ref = await getDocs(courses_query);
+
+    let courses: Course[] = [];
+    const courseData = courses_doc_ref.forEach((doc) => {
+      courses.push({ id: doc.id, ...doc.data() } as Course);
+    });
+
+    return courses;
+  };
+
   useEffect(() => {
-    const get_data = async () => {
-      const collection_ref = collection(firebaseStore, "Bookmarks");
-      const q = await query(
-        collection_ref,
-        where("uid", "==", getAuth().currentUser?.uid)
-      );
-      const doc_ref = await getDocs(q);
-
-      let links: Links[] = [];
-
-      const linksData = doc_ref.forEach((doc) => {
-        links.push({ id: doc.id, ...doc.data() } as Links);
-      });
-      console.log(links);
-      // let bookmarks:Course = [];
-      const courseIDs = links.map((item) => item.courseID);
-
-      const coursesCollection_ref = collection(firebaseStore, "Course");
-      const courses_query = await query(
-        coursesCollection_ref,
-        where("id", "in", courseIDs)
-      );
-      const courses_doc_ref = await getDocs(courses_query);
-
-      let courses: Course[] = [];
-      const courseData = courses_doc_ref.forEach((doc) => {
-        courses.push({ id: doc.id, ...doc.data() } as Course);
-      });
-
-      setBookmarks(courses);
-    };
-
-    get_data();
-  }, [bookmarks]);
+    get_bookmarked_courses().then((courses) => setBookmarks(courses));
+  }, []);
   return (
     <>
       <RichHeader />
