@@ -49,8 +49,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 
 //
 //
@@ -111,6 +110,7 @@ export function CardTemplate(props: {
   const [bookmarked, setBookmarked] = useState<boolean>();
   const [alert, setAlert] = useState(<></>);
   const pathname = usePathname();
+  const router = useRouter();
   useEffect(() => {
     AOS.init();
   });
@@ -167,6 +167,7 @@ export function CardTemplate(props: {
         querySnapshot.forEach((item) => {
           deleteDoc(doc(firebaseStore, "Bookmarks", item.id));
           checkIfBookmarked();
+          router.push("/home");
           setAlert(
             <MTAlert className="fixed top-0 z-50" variant="filled" color="red">
               Item Removed to Bookmarks
