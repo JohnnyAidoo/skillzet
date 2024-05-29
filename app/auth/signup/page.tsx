@@ -1,14 +1,9 @@
 "use client";
-import {
-  Alert,
-  Button,
-  Input,
-  signUp,
-} from "../../../public/components/clientComp";
+import { Alert, Button, Input, signUp } from "@/app/components/clientComp";
 import styles from "../../../public/static/theme";
 import Link from "next/link";
 import Image from "next/image";
-import loginSvg from "../../../public/static/loginSvg.svg";
+import loginSvg from "@/public/static/loginSvg.svg";
 import { useState, useEffect } from "react";
 import { updateProfile } from "firebase/auth";
 import { useRouter } from "next/navigation";
@@ -30,7 +25,7 @@ function SignUpPage() {
 
   const [alert, setAlert] = useState(<></>);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -38,14 +33,14 @@ function SignUpPage() {
     });
   };
 
-  const handleSignUp = (e) => {
+  const handleSignUp = (e: any) => {
     setAlert(<></>);
     signUp(formData.email, formData.password)
       .then((userCredentials) => {
         localStorage.setItem("user_id", userCredentials.user.uid);
         updateProfile(userCredentials.user, {
           displayName: formData.firstName + " " + formData.lastName,
-        }).then(router.push("/home"));
+        }).then(router.push("/home") as any);
       })
       .catch((err) => {
         console.log(err.message);

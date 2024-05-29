@@ -3,9 +3,9 @@ import {
   CardTemplate,
   CourseCategoryCard,
   Text,
-} from "@/public/components/clientComp";
-import RichHeader from "@/public/components/richHeader";
-import SideBar from "@/public/components/sideBar";
+} from "@/app/components/clientComp";
+import RichHeader from "@/app/components/richHeader";
+import SideBar from "@/app/components/sideBar";
 import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { firebaseStore } from "../backend/firebase";
@@ -15,7 +15,6 @@ export default function SearchPage() {
   const router = useRouter();
 
   const [courseList, setCourses] = useState<Course[]>();
-  const [searchOverlay, setSearchOverlay] = useState();
   const [searchValue, setSearchValue] = useState<string>();
 
   const topic_list = [
@@ -40,26 +39,6 @@ export default function SearchPage() {
     course_category: string;
   };
 
-  // useEffect(() => {
-  //   const get_data = async () => {
-  //     const collection_ref = collection(firebaseStore, "Course");
-  //     const doc_ref = await getDocs(collection_ref);
-
-  //     let courses: Course[] = [];
-
-  //     const courseData = doc_ref.forEach((doc) => {
-  //       courses.push({ id: doc.id, ...doc.data() } as Course);
-  //     });
-
-  //     setCourses(courses);
-
-  //     // doc_ref.forEach((doc) => {
-  //     //   console.log(doc.id, "=>", doc.data());
-  //     // });
-  //   };
-
-  //   get_data();
-  // }, []);
   // searchbar event
   const handleSearch = (e: any) => {
     e.preventDefault();

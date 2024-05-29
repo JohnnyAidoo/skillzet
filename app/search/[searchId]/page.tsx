@@ -1,13 +1,13 @@
 "use client";
 import { firebaseStore } from "@/app/backend/firebase";
-import { Button, CardTemplate } from "@/public/components/clientComp";
-import RichHeader from "@/public/components/richHeader";
-import SideBar from "@/public/components/sideBar";
+import { Button, CardTemplate } from "@/app/components/clientComp";
 import styles from "@/public/static/theme";
 import { Option, Select, Typography } from "@material-tailwind/react";
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import SideBar from "@/app/components/sideBar";
+import RichHeader from "@/app/components/richHeader";
 
 export default function SearchDetail() {
   const params = useParams().searchId;

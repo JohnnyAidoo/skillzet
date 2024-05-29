@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
-import styles from "../static/theme";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import styles from "@/public/static/theme";
 
 function Header(props: { sub: ReactElement }) {
   const pathname = usePathname();

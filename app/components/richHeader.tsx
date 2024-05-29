@@ -1,8 +1,7 @@
 "use client";
 import { firebaseAuth } from "@/app/backend/firebase";
-import { Avatar, IconButton, Input } from "@/public/components/clientComp";
-
-import Header from "@/public/components/header";
+import { Avatar, Input } from "@/app/components/clientComp";
+import Header from "@/app/components/header";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,7 +14,7 @@ import {
   PopoverContent,
   PopoverHandler,
 } from "@material-tailwind/react";
-import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

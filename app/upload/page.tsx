@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { Alert, Button, Input } from "@/public/components/clientComp";
-import { firebaseAuth, firebaseStore } from "../backend/firebase";
+import { Alert, Button, Input } from "@/app/components/clientComp";
+import { firebaseStore } from "../backend/firebase";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { Textarea } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";

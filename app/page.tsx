@@ -1,51 +1,18 @@
 "use client";
 import Image from "next/image";
-import heroImg from "../public/heroImg.png";
-import Header from "../public/components/header";
+import heroImg from "@/public/heroImg.png";
+import Header from "@/app/components/header";
 import Link from "next/link";
-import {
-  Button,
-  ButtonGroup,
-  Card,
-  Collapse,
-  Input,
-  Typography,
-} from "@material-tailwind/react";
-import styles from "../public/static/theme";
-import { useEffect, useState } from "react";
+import { Button, ButtonGroup, Typography } from "@material-tailwind/react";
+import styles from "@/public/static/theme";
+import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useRouter } from "next/navigation";
-import { addDoc, collection } from "firebase/firestore";
-import { firebaseStore } from "./backend/firebase";
-import { MdCheck } from "react-icons/md";
 
 function App() {
-  const [success, setSuccess] = useState();
-  const [userEmail, setUserEmail] = useState("");
-  const router = useRouter();
   useEffect(() => {
     AOS.init();
   });
-
-  const addToList = (e: any) => {
-    e.preventDefault();
-    const collection_ref = collection(firebaseStore, "waitlist");
-    if (userEmail !== "") {
-      try {
-        addDoc(collection_ref, { email: userEmail }).then((res) => {
-          res.id
-            ? setSuccess(
-                // @ts-ignore
-                <MdCheck data-aos="fade-up" color="green" size={100} />
-              )
-            : null;
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    }
-  };
 
   return (
     <>
@@ -53,7 +20,7 @@ function App() {
         sub={
           <>
             <div className="w-1/2"></div>
-            {/* <ButtonGroup variant="filled" size="md">
+            <ButtonGroup variant="filled" size="md">
               <Link href="/auth/signup" id="">
                 <Button
                   className="shadow-none "
@@ -76,17 +43,7 @@ function App() {
                   LOG IN
                 </Button>
               </Link>
-            </ButtonGroup> */}
-            <Link href="#wait">
-              <Button
-                style={{
-                  backgroundColor: styles.light.cta,
-                  color: styles.light.primaryLight,
-                }}
-              >
-                Join WaitList
-              </Button>
-            </Link>
+            </ButtonGroup>
           </>
         }
       />
@@ -188,7 +145,7 @@ function App() {
                 and explore our diverse course offerings. Whether you are a
                 novice or an expert,skillZet has something to offer you.
               </p>
-              {/* <Link href={"/auth/login"}>
+              <Link href={"/auth/login"}>
                 <Button
                   style={{ backgroundColor: styles.light.cta }}
                   size="lg"
@@ -196,27 +153,7 @@ function App() {
                 >
                   BEGIN
                 </Button>
-              </Link> */}
-              {success || (
-                <form
-                  onSubmit={addToList}
-                  className="flex flex-col items-center w-full sm:w-4/12"
-                >
-                  <Card className="w-full mx-auto my-4">
-                    <Input
-                      crossOrigin
-                      type="email"
-                      label="email"
-                      size="lg"
-                      value={userEmail}
-                      onChange={(e) => {
-                        setUserEmail(e.target.value);
-                      }}
-                    />
-                  </Card>
-                  <Button onClick={addToList}>Join WaitList</Button>
-                </form>
-              )}
+              </Link>
             </div>
             <div className="mb-10 mt-52"></div>
           </section>

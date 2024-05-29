@@ -1,5 +1,5 @@
-import RichHeader from "@/public/components/richHeader";
-import SideBar from "@/public/components/sideBar";
+import RichHeader from "@/app/components/richHeader";
+import SideBar from "@/app/components/sideBar";
 
 function Settings() {
   return (
@@ -8,7 +8,7 @@ function Settings() {
       <SideBar />
       <main
         style={{ width: "79%" }}
-        className="float-right flex flex-col bottom-0 px-10"
+        className="bottom-0 flex flex-col float-right px-10"
       >
         <h1>settings</h1>
       </main>

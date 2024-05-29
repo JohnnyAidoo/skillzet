@@ -8,7 +8,6 @@ import {
   CardBody,
   CardHeader,
   CardFooter,
-  Chip,
   Typography,
   Popover,
   PopoverHandler,
@@ -17,30 +16,17 @@ import {
   ListItem,
   Badge,
   Alert as MTAlert,
-  Textarea,
   TypographyProps,
-  TypographyStylesType,
   InputProps,
   AvatarProps,
   IconButtonProps,
 } from "@material-tailwind/react";
-import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import styles from "../static/theme";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  ChangeEventHandler,
-  HTMLInputTypeAttribute,
-  MouseEventHandler,
-  ReactNode,
-  useState,
-} from "react";
-import { size } from "@material-tailwind/react/types/components/avatar";
+import styles from "@/public/static/theme";
+import { MouseEventHandler, ReactNode, useState } from "react";
 import {
   MdBookmark,
   MdStar,
-  MdOutlineSearch,
   MdOutlineNotifications,
-  MdOutlineArrowBackIos,
   MdOutlineArrowBack,
 } from "react-icons/md";
 import {
@@ -60,12 +46,10 @@ import {
   collection,
   deleteDoc,
   doc,
-  getDoc,
   getDocs,
   query,
   where,
 } from "firebase/firestore";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 //
 //

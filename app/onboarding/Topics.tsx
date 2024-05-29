@@ -1,8 +1,6 @@
 "use client";
-import Header from "@/public/components/header";
-import { Button, Textarea, Typography } from "@material-tailwind/react";
-import Link from "next/link";
-import { ReactElement, useEffect, useState } from "react";
+import { Button, Typography } from "@material-tailwind/react";
+import { ReactElement, useState } from "react";
 
 function Topics(props: { cta: ReactElement }) {
   const [selectedTopics, setSelectedTopics] = useState([]);

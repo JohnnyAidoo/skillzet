@@ -1,13 +1,11 @@
 "use client";
-import { Avatar, CardTemplate, Input } from "@/public/components/clientComp";
-import Header from "@/public/components/header";
-import SideBar from "@/public/components/sideBar";
+import { CardTemplate } from "@/app/components/clientComp";
+import SideBar from "@/app/components/sideBar";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { MdOutlineSearch, MdOutlineNotifications } from "react-icons/md";
 import { firebaseStore } from "../backend/firebase";
 import { getAuth } from "firebase/auth";
-import RichHeader from "@/public/components/richHeader";
+import RichHeader from "@/app/components/richHeader";
 import { Typography } from "@material-tailwind/react";
 
 function BookmarkPage() {

@@ -1,12 +1,7 @@
 "use client";
-import {
-  Avatar,
-  Backbutton,
-  Button,
-  Input,
-} from "@/public/components/clientComp";
-import Header from "@/public/components/header";
-import SideBar from "@/public/components/sideBar";
+import { Avatar, Backbutton, Input } from "@/app/components/clientComp";
+import Header from "@/app/components/header";
+import SideBar from "@/app/components/sideBar";
 import styles from "@/public/static/theme";
 import {
   MdOutlineNotifications,
@@ -20,9 +15,8 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useParams } from "next/navigation";
-import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { firebaseStore } from "@/app/backend/firebase";
-import Image from "next/image";
 import YouTube from "react-youtube";
 import { getAuth } from "firebase/auth";
 import { Typography } from "@material-tailwind/react";

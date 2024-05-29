@@ -1,5 +1,5 @@
 "use client";
-import styles from "../static/theme";
+import styles from "@/public/static/theme";
 import { Card, List, ListItem, ListItemPrefix } from "@material-tailwind/react";
 import Link from "next/link";
 import { nav_links } from "./constant/urls";
@@ -12,12 +12,12 @@ function SideBar() {
     <>
       <aside
         style={{ backgroundColor: styles.light.primaryDark, width: "20%" }}
-        className="hidden float-left h-screen border-black border-solid md:block md:fixed outline-8 outline-black"
+        className="hidden float-left h-screen border-solid md:block md:fixed outline-8 "
       >
         <Card
           // style={{ width: "99%" }}
           shadow
-          className="w-full h-full p-4 border-r-4 border-black border-solid shadow-xl shadow-blue-gray-900/5"
+          className="w-full h-full p-4 border-r-4 border-solid "
         >
           <div className="p-4 mb-2"></div>
 

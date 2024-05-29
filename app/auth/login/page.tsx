@@ -1,15 +1,10 @@
 "use client";
 
-import {
-  Alert,
-  Button,
-  Input,
-  signIn,
-} from "../../../public/components/clientComp";
-import styles from "../../../public/static/theme";
+import { Alert, Button, Input, signIn } from "@/app/components/clientComp";
+import styles from "@/public/static/theme";
 import Link from "next/link";
 import Image from "next/image";
-import loginSvg from "../../../public/static/loginSvg.svg";
+import loginSvg from "@/public/static/loginSvg.svg";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import AOS from "aos";
@@ -32,7 +27,7 @@ function LoginPage() {
     user_id != null ? router.replace("/dashboard") : null;
   }, [router]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
