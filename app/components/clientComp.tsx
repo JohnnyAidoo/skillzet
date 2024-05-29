@@ -219,7 +219,7 @@ export function CardTemplate(props: {
             {/* rating */}
             <div className="flex">
               {Array.from({ length: props.rating }, (_, index) => (
-                <div>
+                <div key={index}>
                   <MdStar key={index} size={25} color={styles.light.cta} />
                 </div>
               ))}

@@ -52,15 +52,15 @@ function BookmarkPage() {
     const courses_doc_ref = await getDocs(courses_query);
 
     let courses: Course[] = [];
-    const courseData = courses_doc_ref.forEach((doc) => {
+    courses_doc_ref.forEach((doc) => {
       courses.push({ id: doc.id, ...doc.data() } as Course);
     });
 
-    return courses;
+    setBookmarks(courses);
   };
 
   useEffect(() => {
-    get_bookmarked_courses().then((courses) => setBookmarks(courses));
+    get_bookmarked_courses();
   }, []);
   return (
     <>

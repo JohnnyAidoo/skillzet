@@ -118,7 +118,7 @@ function RichHeader(props: {
                 const current_route: boolean = item.url === pathname;
 
                 return (
-                  <Link href={item.url}>
+                  <Link href={item.url} key={item.url}>
                     <ListItem selected={current_route}>
                       <ListItemPrefix>{item.icon}</ListItemPrefix>
                       {item.label}
